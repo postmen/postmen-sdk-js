@@ -5,8 +5,8 @@ const api_key = 'SOME_API_KEY'; // please use your AfterShip api key
 const _ = require('lodash');
 const chai = require('chai');
 const expect = chai.expect;
-const Payload = require('./../../lib/payload');
-const Aftership = require('./../../index');
+const Payload = require('./../lib/payload');
+const Aftership = require('./../index');
 
 describe('Test Payload constructor', function () {
 	describe('Test error handling', function () {

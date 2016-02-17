@@ -8,7 +8,7 @@ const expect = chai.expect;
 const sinon = require('sinon');
 const http = require('http');
 const http_proxy = require('http-proxy');
-const Aftership = require('./../../index');
+const Aftership = require('./../index');
 
 describe('Test aftership.call()', function () {
 	this.timeout(10000);
