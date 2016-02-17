@@ -18,7 +18,9 @@
   "engines": {
     "node": ">= 4.2"
   },
-  "dependencies": {},
+  "dependencies": {
+    "nock": "^7.0.2"
+  },
   "devDependencies": {
     "eslint": "^1.10.3",
     "eslint-config-aftership": "^1.5.0",
