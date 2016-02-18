@@ -4,7 +4,7 @@ const Postmen = require('./../index');
 const Credentials = require('./credentials');
 
 // TODO put your shipper account ID here
-let shipper_account_id = 'SOME-ID';
+let shipper_account_id = 'SOME_ID';
 let postmen = Postmen(Credentials.api_key, Credentials.region);
 
 let payload = {

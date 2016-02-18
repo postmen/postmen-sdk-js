@@ -5,10 +5,14 @@ const Credentials = require('./credentials');
 
 let postmen = Postmen(Credentials.api_key, Credentials.region);
 
-postmen.get('/manifests/put-your-manifests-here', function (err, result) {
+let config = {raw: false};
+
+// get all  labels
+postmen.get('/labels', config, function (err, result) {
 	if (err) {
 		console.log(err);
 	} else {
+		console.log(typeof result);
 		console.log(result);
 	}
 });

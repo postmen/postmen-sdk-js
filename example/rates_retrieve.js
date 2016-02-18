@@ -3,11 +3,9 @@
 const Postmen = require('./../index');
 const Credentials = require('./credentials');
 
-// TODO put ID of a particular rate
-let rate_id = 'RATE-ID';
 let postmen = Postmen(Credentials.api_key, Credentials.region);
 
-// get all cancel labels
+// get all rate labels
 postmen.get('/rates', function (err, result) {
 	if (err) {
 		console.log(err);
@@ -16,8 +14,8 @@ postmen.get('/rates', function (err, result) {
 	}
 });
 
-// get a particular cancel labels
-postmen.get('/rates', rate_id, function (err, result) {
+// get a particular rate labels
+postmen.get('/rates/put-your-rate-label-here', function (err, result) {
 	if (err) {
 		console.log(err);
 	} else {
