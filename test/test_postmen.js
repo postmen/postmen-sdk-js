@@ -38,7 +38,7 @@ describe('Test constructor', function () {
 		});
 
 		it('should construct with api_key and endpoint correctly', function () {
-			let endpoint = 'https://awesome-api.postmen.com/v3';;
+			let endpoint = 'https://awesome-api.postmen.com/v3';
 			let postmen = Postmen(api_key, region, {
 				endpoint: endpoint
 			});
@@ -67,6 +67,18 @@ describe('Test constructor', function () {
 			expect(postmen.endpoint).to.equal(default_endpoint);
 			expect(postmen.proxy).to.equal(default_proxy);
 			expect(postmen.retry).to.equal(false);
+		});
+
+		it('should construct with default retry,rate value', function () {
+			let postmen = Postmen(api_key, region);
+			expect(postmen.retry).to.equal(true);
+			expect(postmen.rate).to.equal(true);
+		});
+
+		it('should override correct with retry,rate', function () {
+			let postmen = Postmen(api_key, region, {retry: false, rate: false});
+			expect(postmen.retry).to.equal(false);
+			expect(postmen.rate).to.equal(false);
 		});
 	});
 
