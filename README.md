@@ -70,16 +70,6 @@ postmen.get('/labels', function (err, result) {
 		console.log(result);
 	}
 });
-
-// get a particular labels
-postmen.get('/rates', label_id, function (err, result) {
-	if (err) {
-		console.log(err);
-	} else {
-		console.log(result);
-	}
-});
-
 ```
 
 ## class Postmen
