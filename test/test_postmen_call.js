@@ -410,6 +410,23 @@ describe('Test postmen.call()', function () {
 			});
 		});
 
+		it('should callback with response error, if response body is not a object', function (done) {
+			let mock_req = {
+				headers: {}
+			};
+			let mock_html_req = '<html>THIS IS NOT A VALID JSON OBJECT</html>';
+			let expected_error_msg = 'Something went wrong on server side';
+			let postmen = Postmen(api_key, region);
+			// Stub request to throw
+			sandbox.stub(postmen, 'request', function (request_object, callback) {
+				callback(null, mock_req, mock_html_req);
+			});
+			postmen.call('GET', '/labels', function (err) {
+				expect(err.message).to.equal(expected_error_msg);
+				done();
+			});
+		});
+
 		it('should callback with response error, if request throw', function (done) {
 			let expected_error = new Error('Some error');
 			let postmen = Postmen(api_key, region);
