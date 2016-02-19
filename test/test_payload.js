@@ -6,7 +6,7 @@ const expect = chai.expect;
 const Payload = require('./../lib/payload');
 const Postmen = require('./../index');
 
-const api_key = 'SOME_API_KEY'; // please use your AfterShip api key
+const api_key = 'SOME_API_KEY'; // please use your Postmen api key
 const region = 'SOME_REGION';
 
 describe('Test Payload constructor', function () {

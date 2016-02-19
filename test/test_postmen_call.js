@@ -8,7 +8,7 @@ const http = require('http');
 const http_proxy = require('http-proxy');
 const Postmen = require('./../index');
 
-const api_key = 'SOME_API_KEY'; // please use your AfterShip api key
+const api_key = 'SOME_API_KEY'; // please use your Postmen api key
 const region = 'SOME_REGION';
 const default_endpoint = 'https://SOME_REGION-api.postmen.com/v3';
 
@@ -641,7 +641,7 @@ describe('Test postmen.call()', function () {
 				expected_error = {
 					meta: {
 						code: 500,
-						message: 'Something went wrong on AfterShip\'s end.',
+						message: 'Something went wrong on Postmen\'s end.',
 						type: 'InternalError'
 					},
 					data: {}
