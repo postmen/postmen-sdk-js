@@ -35,7 +35,7 @@ Node.js `>= 4.2` is required.
 #### NPM installation
 
 ```
-npm install aftership
+npm install postmen
 ```
 
 ## Quick Start
@@ -115,7 +115,7 @@ Creates postmen api object
 - [cancel_labels_create.js](https://github.com/postmen/postmen-sdk-js/master/examples/cancel_labels_create.js)
 
 #### get(path, config,callback)
-Gets Postmen API  objects (list or a single objects).
+Get Postmen API  objects (list or a single objects).
 
 | Argument                       | Required                               | Type    | Default   | Description                                       |
 |--------------------------------|----------------------------------------|---------|-----------|---------------------------------------------------|
@@ -154,7 +154,7 @@ postmen.call('GET', '/path', config, callback);
 
 #### Proxy Method (GET, POST, PUT, DELETE)
 
-There are also interface `GET`, `POST`, `PUT`, `DELETE` which are proxy to `Aftership.call(...)`
+There are also interface `GET`, `POST`, `PUT`, `DELETE` which are proxy to `Postmen.call(...)`
 
 ```javascript
 postmen.call('GET', '/path', config, callback);
@@ -166,7 +166,7 @@ postmen.GET('/path', config, callback);
 
 ## Rate Limiter:
 
-To understand AfterShip rate limit policy, please see `limit` session in https://docs.postmen.com/ratelimit.html
+To understand Postmen rate limit policy, please see `limit` session in https://docs.postmen.com/ratelimit.html
 
 You can get the recent rate limit by `postmen.rate_limit`. Initially all value is `{}`.
 ```javascript
@@ -192,7 +192,7 @@ When the API response with `429 Too Many request error`
 
 ## Retry policy
 
-To understand error of AfterShip, please see https://www.aftership.com/docs/api/4/errors
+If API error is retryable, SDK will wait for delay and retry. Delay starts from 1 second. After each try, delay time is doubled. Maximum number of attempts is 5.
 
 You can set the `retry` flag
 - in constructor as default `retry` flag
