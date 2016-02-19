@@ -8,8 +8,7 @@ For problems and suggestions please open [GitHub issue](https://github.com/postm
 
 - [Installation](#installation)
     - [Requirements](#requirements)
-    - [Manual installation](#manual-installation)
-    - [Using Composer](#using-composer)
+    - [NPM Installation](#npm-installation)
 - [Quick Start](#quick-start)
 - [class Postmen](#class-postmen)
     - [Postmen(api_key, region, config](#postmenapi_key-region-config--array)
@@ -33,7 +32,7 @@ For problems and suggestions please open [GitHub issue](https://github.com/postm
 
 Node.js `>= 4.2` is required. 
 
-#### Manual installation
+#### NPM installation
 
 ```
 npm install aftership
