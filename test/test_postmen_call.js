@@ -13,7 +13,7 @@ const region = 'SOME_REGION';
 const default_endpoint = 'https://SOME_REGION-api.postmen.com/v3';
 
 describe('Test postmen.call()', function () {
-	this.timeout(10000);
+	this.timeout(600000);
 
 	let sandbox;
 
@@ -184,8 +184,8 @@ describe('Test postmen.call()', function () {
 			postmen.request.reset();
 		});
 
-		it('should work with call(method, path) with callback', function (done) {
-			postmen.call('GET', '/labels', function (err, result) {
+		it('should work with get(path) with callback', function (done) {
+			postmen.get('/labels', function (err, result) {
 				let request_object = {
 					headers: {
 						'Connection': 'keep-alive',
@@ -203,8 +203,8 @@ describe('Test postmen.call()', function () {
 			});
 		});
 
-		it('should work with call(method, path, {body}) with callback', function (done) {
-			postmen.call('POST', '/labels', {
+		it('should work with create(path, {body}) with callback', function (done) {
+			postmen.create('/labels', {
 				body: body
 			}, function (err, result) {
 				let request_object = {
@@ -225,52 +225,11 @@ describe('Test postmen.call()', function () {
 			});
 		});
 
-		it('should work with call(method, path) with promise', function (done) {
-			postmen.call('GET', '/labels').then(function (result) {
-				let request_object = {
-					headers: {
-						'Connection': 'keep-alive',
-						'postmen-api-key': api_key,
-						'Content-Type': 'application/json',
-						'x-postmen-agent': '1.0.0'
-					},
-					url: default_endpoint + '/labels',
-					method: 'GET',
-					json: true
-				};
-				expect(postmen.request.args[0][0]).to.deep.equal(request_object);
-				expect(result).to.deep.equal(expected_result);
-				done();
-			});
-		});
-
-		it('should work with call(method, path, {body}) with promise', function (done) {
-			postmen.call('POST', '/labels', {
-				body: body
-			}).then(function (result) {
-				let request_object = {
-					headers: {
-						'Connection': 'keep-alive',
-						'postmen-api-key': api_key,
-						'Content-Type': 'application/json',
-						'x-postmen-agent': '1.0.0'
-					},
-					url: default_endpoint + '/labels',
-					body: body,
-					method: 'POST',
-					json: true
-				};
-				expect(postmen.request.args[0][0]).to.deep.equal(request_object);
-				expect(result).to.deep.equal(expected_result);
-				done();
-			});
-		});
-
-		it('should work with call(method, path, {body, query})', function (done) {
+		it('should work with get(path, {body, query})', function (done) {
 			let query = {
 				fields: 'slug,name'
 			};
-			postmen.call('GET', '/labels', {
+			postmen.get('/labels', {
 				query: query
 			}, function (err, result) {
 				let request_object = {
@@ -290,8 +249,8 @@ describe('Test postmen.call()', function () {
 			});
 		});
 
-		it('should work with call(method, path, {raw = true})', function (done) {
-			postmen.call('GET', '/labels', {
+		it('should work with get(path, {raw = true})', function (done) {
+			postmen.get('/labels', {
 				raw: true
 			}, function (err, result) {
 				let request_object = {
@@ -451,34 +410,6 @@ describe('Test postmen.call()', function () {
 			});
 		});
 
-		it('should return promise with response error, if response code != 200', function (done) {
-			let expected_message = 'Invalid API key.';
-			let mock_req = {
-				headers: {
-					'x-ratelimit-limit': 999,
-					'x-ratelimit-remaining': 999,
-					'x-ratelimit-reset': 999
-				}
-			};
-			let result = {
-				meta: {
-					code: 401,
-					message: 'Invalid API key.',
-					type: 'Unauthorized'
-				},
-				data: {}
-			};
-			// Construct with invalid api_key
-			let postmen = Postmen('', region);
-			sandbox.stub(postmen, 'request', function (request_object, callback) {
-				callback(null, mock_req, result);
-			});
-			postmen.call('GET', '/labels').catch(function (err) {
-				expect(err.message).to.equal(expected_message);
-				done();
-			});
-		});
-
 		it('should callback with response error, if request throw', function (done) {
 			let expected_error = new Error('Some error');
 			let postmen = Postmen(api_key, region);
@@ -487,19 +418,6 @@ describe('Test postmen.call()', function () {
 				callback(expected_error);
 			});
 			postmen.call('GET', '/labels', function (err) {
-				expect(err.message).to.equal(expected_error.message);
-				done();
-			});
-		});
-
-		it('should return promise with response error, if request throw', function (done) {
-			let expected_error = new Error('Some error');
-			let postmen = Postmen(api_key, region);
-			// Stub request to throw
-			sandbox.stub(postmen, 'request', function (request_object, callback) {
-				callback(expected_error);
-			});
-			postmen.call('GET', '/labels').catch(function (err) {
 				expect(err.message).to.equal(expected_error.message);
 				done();
 			});
@@ -645,7 +563,7 @@ describe('Test postmen.call()', function () {
 
 	describe('Test retry flag', function () {
 		describe('Test retry with Request Error', function () {
-			it('should retry with call() with default retry = true, if request return ETIMEDOUT', function (done) {
+			it('should retry with get() with default retry = true, if request return ETIMEDOUT', function (done) {
 				// Construct with valid api_key
 				let postmen = Postmen(api_key, region);
 				let expected_error = new Error();
@@ -654,14 +572,14 @@ describe('Test postmen.call()', function () {
 				sandbox.stub(postmen, 'request', function (request_object, callback) {
 					callback(expected_error);
 				});
-				postmen.call('GET', '/labels', function (err, result) {
+				postmen.get('/labels', function (err, result) {
 					expect(err.type).to.equal('ETIMEDOUT');
 					expect(err.retry_count).to.equal(5);
 					done();
 				});
 			});
 
-			it('should retry with call() with default retry = true, if request return ECONNRESET', function (done) {
+			it('should retry with get() with default retry = true, if request return ECONNRESET', function (done) {
 				// Construct with valid api_key
 				let postmen = Postmen(api_key, region);
 				let expected_error = new Error();
@@ -670,14 +588,14 @@ describe('Test postmen.call()', function () {
 				sandbox.stub(postmen, 'request', function (request_object, callback) {
 					callback(expected_error);
 				});
-				postmen.call('GET', '/labels', function (err, result) {
+				postmen.get('/labels', function (err, result) {
 					expect(err.type).to.equal('ECONNRESET');
 					expect(err.retry_count).to.equal(5);
 					done();
 				});
 			});
 
-			it('should retry with call() with default retry = true, if request return ECONNREFUSED', function (done) {
+			it('should retry with get() with default retry = true, if request return ECONNREFUSED', function (done) {
 				// Construct with valid api_key
 				let postmen = Postmen(api_key, region);
 				let expected_error = new Error();
@@ -686,14 +604,14 @@ describe('Test postmen.call()', function () {
 				sandbox.stub(postmen, 'request', function (request_object, callback) {
 					callback(expected_error);
 				});
-				postmen.call('GET', '/labels', function (err, result) {
+				postmen.get('/labels', function (err, result) {
 					expect(err.type).to.equal('ECONNREFUSED');
 					expect(err.retry_count).to.equal(5);
 					done();
 				});
 			});
 
-			it('should not retry with call() with retry = false, if request return ECONNREFUSED', function (done) {
+			it('should not retry with get() with retry = false, if request return ECONNREFUSED', function (done) {
 				// Construct with valid api_key
 				let postmen = Postmen(api_key, region, {
 					retry: false
@@ -704,7 +622,7 @@ describe('Test postmen.call()', function () {
 				sandbox.stub(postmen, 'request', function (request_object, callback) {
 					callback(expected_error);
 				});
-				postmen.call('GET', '/labels', function (err, result) {
+				postmen.get('/labels', function (err, result) {
 					expect(err.type).to.equal('ECONNREFUSED');
 					expect(err.retry_count).to.equal(undefined);
 					done();
@@ -730,21 +648,21 @@ describe('Test postmen.call()', function () {
 				};
 			});
 
-			it('should retry with call() with default retry = true, if Postmen return InternalError 500', function (done) {
+			it('should retry with get() with default retry = true, if Postmen return InternalError 500', function (done) {
 				// Construct with valid api_key
 				let postmen = Postmen(api_key, region);
 				// Stub request to throw
 				sandbox.stub(postmen, 'request', function (request_object, callback) {
 					callback(null, mock_req, expected_error);
 				});
-				postmen.call('GET', '/labels', function (err, result) {
+				postmen.get('/labels', function (err, result) {
 					expect(err.type).to.equal(expected_error.meta.type);
 					expect(err.retry_count).to.equal(5);
 					done();
 				});
 			});
 
-			it('should retry with call(..., {retry = true}), if Postmen return InternalError 500', function (done) {
+			it('should retry with get(..., {retry = true}), if Postmen return InternalError 500', function (done) {
 				// Construct with valid api_key
 				let postmen = Postmen(api_key, region, {
 					retry: false
@@ -753,7 +671,7 @@ describe('Test postmen.call()', function () {
 				sandbox.stub(postmen, 'request', function (request_object, callback) {
 					callback(null, mock_req, expected_error);
 				});
-				postmen.call('GET', '/labels', {
+				postmen.get('/labels', {
 					retry: true
 				}, function (err, result) {
 					expect(err.type).to.equal(expected_error.meta.type);
@@ -762,7 +680,7 @@ describe('Test postmen.call()', function () {
 				});
 			});
 
-			it('should not retry with call() with default retry = false, if Postmen return InternalError 500', function (done) {
+			it('should not retry with get() with default retry = false, if Postmen return InternalError 500', function (done) {
 				// Construct with valid api_key
 				let postmen = Postmen(api_key, region, {
 					retry: false
@@ -771,21 +689,21 @@ describe('Test postmen.call()', function () {
 				sandbox.stub(postmen, 'request', function (request_object, callback) {
 					callback(null, mock_req, expected_error);
 				});
-				postmen.call('GET', '/labels', function (err, result) {
+				postmen.get('/labels', function (err, result) {
 					expect(err.type).to.equal(expected_error.meta.type);
 					expect(err.retry_count).to.equal(undefined);
 					done();
 				});
 			});
 
-			it('should not retry with call(..., {retry = false}), if Postmen return InternalError 500', function (done) {
+			it('should not retry with get(..., {retry = false}), if Postmen return InternalError 500', function (done) {
 				// Construct with valid api_key
 				let postmen = Postmen(api_key, region);
 				// Stub request to throw
 				sandbox.stub(postmen, 'request', function (request_object, callback) {
 					callback(null, mock_req, expected_error);
 				});
-				postmen.call('GET', '/labels', {
+				postmen.get('/labels', {
 					retry: false
 				}, function (err, result) {
 					expect(err.type).to.equal(expected_error.meta.type);

@@ -6,7 +6,7 @@ const Credentials = require('./credentials');
 let postmen = Postmen(Credentials.api_key, Credentials.region);
 
 // get all cancel labels
-postmen.get('/cancel-labels',  function (err, result) {
+postmen.get('/cancel-labels', function (err, result) {
 	if (err) {
 		console.log(err);
 	} else {

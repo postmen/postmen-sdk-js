@@ -341,7 +341,7 @@ describe('Test Payload constructor', function () {
 
 				// Retry count = 0
 				let result1 = Payload(postmen, 'GET', '');
-				expect(result1.retry_count).to.equal(0);
+				expect(result1.retry_count).to.equal(1);
 
 				// Default to false
 				postmen = Postmen(api_key, region, {
