@@ -44,8 +44,8 @@ In order to get API key and choose a region refer to the [documentation](https:/
 
 ```javascript
 'use strict';
-
-const Postmen = require('./../index');
+ 
+const Postmen = require('postmen');
 // TODO key of the Postmen instance
 let api_key = 'api-key',
 // TODO region of the Postmen instance
