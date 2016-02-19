@@ -15,7 +15,7 @@ For problems and suggestions please open [GitHub issue](https://github.com/postm
     - [Postmen(api_key, region, config](#postmenapi_key-region-config--array)
     - [create(path, config, callback)](#createpath-config-callback)
     - [get(path, config, callback)](#getpath-payload-config--callback)
-    - GET,POST,PUT,DELETE(#proxy-method-get-post-put-delete)
+    - [Proxy methods of GET,POST,PUT,DELETE](#proxy-method-get-post-put-delete)
 - [Automatic retry on retryable error](#automatic-retry-on-retryable-error)
 - [Rate Limiter](#rate-limiter)
 - [Examples](#examples)
