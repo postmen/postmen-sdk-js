@@ -18,6 +18,7 @@ module.exports = (grunt) => {
 	});
 
 	// Tasks
+
 	grunt.registerTask('coverage', ['mocha_istanbul:coverage']);
 
 	grunt.registerTask('lint', ['eslint']);

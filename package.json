@@ -18,6 +18,10 @@
   "engines": {
     "node": ">= 4.2"
   },
+  "scripts": {
+    "lint": "grunt lint",
+    "test": "grunt lint && grunt coverage"
+  },
   "dependencies": {
     "lodash": "^4.5.0",
     "request": "^2.69.0"
@@ -43,5 +47,8 @@
     "postmen sdk"
   ],
   "license": "MIT",
+  "pre-commit": [
+    "lint"
+  ],
   "private": false
 }
