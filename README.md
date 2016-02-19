@@ -16,8 +16,8 @@ For problems and suggestions please open [GitHub issue](https://github.com/postm
     - [create(path, config, callback)](#createpath-config-callback)
     - [get(path, config, callback)](#getpath-payload-config--callback)
     - [Proxy methods of GET,POST,PUT,DELETE](#proxy-method-get-post-put-delete)
-- [Automatic retry on retryable error](#automatic-retry-on-retryable-error)
 - [Rate Limiter](#rate-limiter)
+- [Retry Policy](#retry-policy)
 - [Examples](#examples)
     - [Full list](#full-list)
     - [How to run](#how-to-run)
@@ -88,7 +88,7 @@ In order to get API key and choose a region refer to the [documentation](https:/
 | `config['retry']`             | —                                      | boolean | `true`    | Automatic retry on retryable errors               |
 | `config['rate']`              | —                                      | boolean | `true`    | Wait before API call if rate limit exceeded or retry on 429 error |
 | `config['raw']`               | —                                      | boolean | `false`   | To return API response as a raw string            |
-| `config['proxy']`             | —                                      | string   |  | Proxy credentials                                 |
+| `config['proxy']`             | —                                      | string   | null | Proxy credentials                                 |
 
 #### create(path, config, callback)
 Creates postmen api object
@@ -110,10 +110,10 @@ Creates postmen api object
 - [POST /cancel-labels](https://docs.postmen.com/#cancel-labels-cancel-a-label)
 
 **Examples:**
-- [rates_create.js](https://github.com/postmen/postmen-sdk-Node.js/blob/master/examples/rates_create.js)
-- [labels_create.js](https://github.com/postmen/postmen-sdk-Node.js/blob/master/examples/labels_create.js)
-- [manifests_create.js](https://github.com/postmen/postmen-sdk-Node.js/blob/master/examples/manifests_create.js)
-- [cancel_labels_create.js](https://github.com/postmen/postmen-sdk-Node.js/blob/master/examples/cancel_labels_create.js)
+- [rates_create.js](https://github.com/postmen/postmen-sdk-js/master/examples/rates_create.js)
+- [labels_create.js](https://github.com/postmen/postmen-sdk-js/master/examples/labels_create.js)
+- [manifests_create.js](https://github.com/postmen/postmen-sdk-js/master/examples/manifests_create.js)
+- [cancel_labels_create.js](https://github.com/postmen/postmen-sdk-js/master/examples/cancel_labels_create.js)
 
 #### get(path, config,callback)
 Gets Postmen API  objects (list or a single objects).
@@ -125,7 +125,7 @@ Gets Postmen API  objects (list or a single objects).
 | `config['body']`          |   NO                                    | string  | `null`     |      `POST` body                   |
 | `config['query']`             | NO                                     | object | `null`    | `query` object              |
 | `config['retry']`              | NO                                     | boolean | `true`    | override `default retry` if set, see [Retry policy](#retry-policy) |
-| `config['raw']`               | —                                      | boolean | `false`   | if `true`, return result as `string`, else return as `object`           |
+| `config['raw']`               | NO                                     | boolean | `false`   | if `true`, return result as `string`, else return as `object`           |
 | `callback`              | YES                                    | function | N/A   | the callback to handle error and result, the result is the response body of the request|
 
 ```javascript
@@ -153,7 +153,19 @@ postmen.call('GET', '/path', config, callback);
 - [manifests_retrieve.php](https://github.com/postmen/postmen-sdk-js/master/examples/manifests_retrieve.php)
 - [cancel_labels_retrieve.php](https://github.com/postmen/postmen-sdk-js/master/examples/cancel_labels_retrieve.php)
 
-**Rate Limiter:**
+#### Proxy Method (GET, POST, PUT, DELETE)
+
+There are also interface `GET`, `POST`, `PUT`, `DELETE` which are proxy to `Aftership.call(...)`
+
+```javascript
+postmen.call('GET', '/path', config, callback);
+// is equivalent to
+postmen.GET('/path', config, callback);
+
+// So as `POST`, `PUT` and `DELETE`
+```
+
+## Rate Limiter:
 
 To understand AfterShip rate limit policy, please see `limit` session in https://docs.postmen.com/ratelimit.html
 
@@ -179,23 +191,14 @@ When the API response with `429 Too Many request error`
 - if `rate` is `true`, it wont throw, will delay the job, retry when the rate limit is reset.
 - if `rate` is `false`, it will return `429 Too Many request error` to the callback
 
-## Proxy Method (GET, POST, PUT, DELETE)
+## Retry policy
 
-There are also interface `GET`, `POST`, `PUT`, `DELETE` which are proxy to `Aftership.call(...)`
+To understand error of AfterShip, please see https://www.aftership.com/docs/api/4/errors
 
-```javascript
-postmen.call('GET', '/path', config, callback);
-// is equivalent to
-postmen.GET('/path', config, callback);
+You can set the `retry` flag
+- in constructor as default `retry` flag
+- specify in `config` of `get()` or `create()` method
 
-// So as `POST`, `PUT` and `DELETE`
-```
-
-#### Automatic retry on retryable error
-
-If API error is retryable, SDK will wait for delay and retry. Delay starts from 1 second. After each try, delay time is doubled. Maximum number of attempts is 5.
-
-To disable this option set `conifg['retry'] = FALSE;`
 
 ## Examples
 
