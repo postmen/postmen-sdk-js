@@ -187,8 +187,8 @@ postmen.GET('/path', config, callback);
 
 ## Promise:
 Only [create(path, config, callback)](#createpath-config-callback) and [get(path, config, callback)](#getpath-payload-config--callback) function support promise.
-[create example](https://github.com/postmen/postmen-sdk-js/master/examples/labels_create.js)
-[get example](https://github.com/postmen/postmen-sdk-js/master/examples/labels_retrieve.js).
+- [create example](https://github.com/postmen/postmen-sdk-js/master/examples/labels_create.js)
+- [get example](https://github.com/postmen/postmen-sdk-js/master/examples/labels_retrieve.js).
 
 ## Rate Limiter:
 
