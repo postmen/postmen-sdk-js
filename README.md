@@ -168,10 +168,10 @@ postmen.call('GET', '/path', config, callback);
 - [GET /cancel-labels/:id](https://docs.postmen.com/#cancel-labels-retrieve-a-cancel-label)
 
 **Examples:**
-- [rates_retrieve.php](https://github.com/postmen/postmen-sdk-js/master/examples/rates_retrieve.php)
-- [labels_retrieve.php](https://github.com/postmen/postmen-sdk-js/master/examples/labels_retrieve.php)
-- [manifests_retrieve.php](https://github.com/postmen/postmen-sdk-js/master/examples/manifests_retrieve.php)
-- [cancel_labels_retrieve.php](https://github.com/postmen/postmen-sdk-js/master/examples/cancel_labels_retrieve.php)
+- [rates_retrieve.js](https://github.com/postmen/postmen-sdk-js/master/examples/rates_retrieve.js)
+- [labels_retrieve.js](https://github.com/postmen/postmen-sdk-js/master/examples/labels_retrieve.js)
+- [manifests_retrieve.js](https://github.com/postmen/postmen-sdk-js/master/examples/manifests_retrieve.js)
+- [cancel_labels_retrieve.js](https://github.com/postmen/postmen-sdk-js/master/examples/cancel_labels_retrieve.js)
 
 #### Proxy Method (GET, POST, PUT, DELETE)
 
@@ -186,7 +186,7 @@ postmen.GET('/path', config, callback);
 ```
 
 ## Promise:
-Only [create(path, config, callback)](#createpath-config-callback) and [get(path, config, callback)](#getpath-payload-config--callback) function support promise.
+Only [create(path, config, callback)](#createpath-config-callback) and [get(path, config, callback)](#getpath-configcallback) function support promise.
 - [create example](https://github.com/postmen/postmen-sdk-js/master/examples/labels_create.js)
 - [get example](https://github.com/postmen/postmen-sdk-js/master/examples/labels_retrieve.js).
 
