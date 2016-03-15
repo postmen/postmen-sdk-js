@@ -203,6 +203,25 @@ describe('Test postmen.call()', function () {
 			});
 		});
 
+		it('should work with get(path) with promise', function (done) {
+			postmen.get('/labels').then(function (result) {
+				let request_object = {
+					headers: {
+						'Connection': 'keep-alive',
+						'postmen-api-key': api_key,
+						'Content-Type': 'application/json',
+						'x-postmen-agent': '1.0.0'
+					},
+					url: default_endpoint + '/labels',
+					method: 'GET',
+					json: true
+				};
+				expect(postmen.request.args[0][0]).to.deep.equal(request_object);
+				expect(result).to.deep.equal(expected_result);
+				done();
+			});
+		});
+
 		it('should work with create(path, {body}) with callback', function (done) {
 			postmen.create('/labels', {
 				body: body
@@ -225,13 +244,59 @@ describe('Test postmen.call()', function () {
 			});
 		});
 
-		it('should work with get(path, {body, query})', function (done) {
+		it('should work with create(path, {body}) with promise', function (done) {
+			postmen.create('/labels', {
+				body: body
+			}).then(function (result) {
+				let request_object = {
+					headers: {
+						'Connection': 'keep-alive',
+						'postmen-api-key': api_key,
+						'Content-Type': 'application/json',
+						'x-postmen-agent': '1.0.0'
+					},
+					url: default_endpoint + '/labels',
+					body: body,
+					method: 'POST',
+					json: true
+				};
+				expect(postmen.request.args[0][0]).to.deep.equal(request_object);
+				expect(result).to.deep.equal(expected_result);
+				done();
+			});
+		});
+
+		it('should work with get(path, {body, query}) by callback', function (done) {
 			let query = {
 				fields: 'slug,name'
 			};
 			postmen.get('/labels', {
 				query: query
 			}, function (err, result) {
+				let request_object = {
+					headers: {
+						'Connection': 'keep-alive',
+						'postmen-api-key': api_key,
+						'Content-Type': 'application/json',
+						'x-postmen-agent': '1.0.0'
+					},
+					url: default_endpoint + '/labels',
+					qs: query,
+					method: 'GET',
+					json: true
+				};
+				expect(postmen.request.args[0][0]).to.deep.equal(request_object);
+				done();
+			});
+		});
+
+		it('should work with get(path, {body, query}) by promise', function (done) {
+			let query = {
+				fields: 'slug,name'
+			};
+			postmen.get('/labels', {
+				query: query
+			}).then(function (result) {
 				let request_object = {
 					headers: {
 						'Connection': 'keep-alive',
@@ -382,6 +447,33 @@ describe('Test postmen.call()', function () {
 	});
 
 	describe('Test error handling', function () {
+		it('should promise with response error by using get, if request throw error', function (done) {
+			let expected_error = new Error('Some error');
+			let postmen = Postmen(api_key, region);
+			// Stub request to throw
+			sandbox.stub(postmen, 'request', function (request_object, callback) {
+				callback(expected_error);
+			});
+			postmen.get('/labels').catch(function (err) {
+				expect(err.message).to.equal(expected_error.message);
+				done();
+			});
+		});
+
+		it('should promise with response error by using create, if request throw error', function (done) {
+			let expected_error = new Error('Some error');
+			let postmen = Postmen(api_key, region);
+			let payload = {};
+			// Stub request to throw
+			sandbox.stub(postmen, 'request', function (request_object, callback) {
+				callback(expected_error);
+			});
+			postmen.create('/labels', {body: payload}).catch(function (err) {
+				expect(err.message).to.equal(expected_error.message);
+				done();
+			});
+		});
+
 		it('should callback with response error, if response code != 200', function (done) {
 			let expected_message = 'Invalid API key.';
 			let mock_req = {
@@ -427,7 +519,7 @@ describe('Test postmen.call()', function () {
 			});
 		});
 
-		it('should callback with response error, if request throw', function (done) {
+		it('should callback with response error, if request throw error', function (done) {
 			let expected_error = new Error('Some error');
 			let postmen = Postmen(api_key, region);
 			// Stub request to throw

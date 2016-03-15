@@ -95,6 +95,7 @@ let config = {
 	body: payload
 };
 
+// create labels by using callback
 postmen.create('/labels', config, function (err, result) {
 	if (err) {
 		console.log(err);
@@ -102,3 +103,10 @@ postmen.create('/labels', config, function (err, result) {
 		console.log(result);
 	}
 });
+
+// create labels by using promise
+// postmen.create('/labels',config).then(function (result) {
+//     console.log(result);
+// }).catch(function (err) {
+//     console.log(err);
+// });

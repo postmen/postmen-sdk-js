@@ -75,10 +75,11 @@ describe('Test constructor', function () {
 			expect(postmen.rate).to.equal(true);
 		});
 
-		it('should override correct with retry,rate', function () {
-			let postmen = Postmen(api_key, region, {retry: false, rate: false});
+		it('should override correct with retry,rate,raw', function () {
+			let postmen = Postmen(api_key, region, {retry: false, rate: false, raw: false});
 			expect(postmen.retry).to.equal(false);
 			expect(postmen.rate).to.equal(false);
+			expect(postmen.raw).to.equal(false);
 		});
 	});
 
@@ -276,6 +277,34 @@ describe('Test constructor', function () {
 			}
 			try {
 				Postmen(api_key, region, {rate: ''});
+			} catch (e) {
+				expect(e.message).to.equal(expected_error);
+			}
+		});
+		it('should return error, if raw is defined but not boolean', function () {
+			let expected_error = 'ConstructorError: Invalid Raw value';
+			try {
+				Postmen(api_key, region, {raw: 999});
+			} catch (e) {
+				expect(e.message).to.equal(expected_error);
+			}
+			try {
+				Postmen(api_key, region, {raw: 0});
+			} catch (e) {
+				expect(e.message).to.equal(expected_error);
+			}
+			try {
+				Postmen(api_key, region, {raw: 1});
+			} catch (e) {
+				expect(e.message).to.equal(expected_error);
+			}
+			try {
+				Postmen(api_key, region, {raw: {}});
+			} catch (e) {
+				expect(e.message).to.equal(expected_error);
+			}
+			try {
+				Postmen(api_key, region, {raw: ''});
 			} catch (e) {
 				expect(e.message).to.equal(expected_error);
 			}

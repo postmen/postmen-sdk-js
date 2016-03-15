@@ -28,6 +28,7 @@ For problems and suggestions please open [GitHub issue](https://github.com/postm
     - [create(path, config, callback)](#createpath-config-callback)
     - [get(path, config, callback)](#getpath-payload-config--callback)
     - [Proxy methods of GET,POST,PUT,DELETE](#proxy-method-get-post-put-delete)
+- [Promise](#promise)
 - [Rate Limiter](#rate-limiter)
 - [Retry Policy](#retry-policy)
 - [Examples](#examples)
@@ -64,13 +65,20 @@ let api_key = 'api-key',
 // TODO region of the Postmen instance
 let region = 'sandbox';
 	
-// get all  labels
+// get all labels by using callback
 postmen.get('/labels', function (err, result) {
 	if (err) {
 		console.log(err);
 	} else {
 		console.log(result);
 	}
+});
+
+// get all labels by using promise
+postmen.get('/labels').then(function (result) {
+		console.log(result);	
+}).catch(function (err) {
+    console.log(err);
 });
 
 // get a particular  labels
@@ -113,7 +121,7 @@ Creates postmen api object
 | `config['query']`             | NO                                     | object | `null`    | `query` object              |
 | `config['retry']`              | NO                                     | boolean | `true`    | override `default retry` if set, see [Retry policy](#retry-policy) |
 | `config['raw']`               | NO                                      | boolean | `false`   | if `true`, return result as `string`, else return as `object`           |
-| `callback`              | YES                                    | function | N/A   | the callback to handle error and result, the result is the response body of the request|
+| `callback`              | NO                                    | function | N/A   | the callback to handle error and result, the result is the response body of the request|
 
 **API Docs:**
 - [POST /rates](https://docs.postmen.com/#rates-calculate-rates)
@@ -138,7 +146,7 @@ Get Postmen API  objects (list or a single objects).
 | `config['query']`             | NO                                     | object | `null`    | `query` object              |
 | `config['retry']`              | NO                                     | boolean | `true`    | override `default retry` if set, see [Retry policy](#retry-policy) |
 | `config['raw']`               | NO                                     | boolean | `false`   | if `true`, return result as `string`, else return as `object`           |
-| `callback`              | YES                                    | function | N/A   | the callback to handle error and result, the result is the response body of the request|
+| `callback`              | NO                                    | function | N/A   | the callback to handle error and result, the result is the response body of the request|
 
 ```javascript
 postmen.get( '/path/label-id', callback);
@@ -176,6 +184,11 @@ postmen.GET('/path', config, callback);
 
 // So as `POST`, `PUT` and `DELETE`
 ```
+
+## Promise:
+Only [create(path, config, callback)](#createpath-config-callback) and [get(path, config, callback)](#getpath-payload-config--callback) function support promise.
+[create example](https://github.com/postmen/postmen-sdk-js/master/examples/labels_create.js)
+[get example](https://github.com/postmen/postmen-sdk-js/master/examples/labels_retrieve.js).
 
 ## Rate Limiter:
 
