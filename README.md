@@ -20,14 +20,14 @@ For problems and suggestions please open [GitHub issue](https://github.com/postm
 **Table of Contents**
 
 - [Installation](#installation)
-    - [Requirements](#requirements)
     - [NPM Installation](#npm-installation)
 - [Quick Start](#quick-start)
 - [class Postmen](#class-postmen)
     - [Postmen(api_key, region, config](#postmenapi_key-region-config--array)
-    - [create(path, config, callback)](#createpath-config-callback)
-    - [get(path, config, callback)](#getpath-payload-config--callback)
+    - [create(path, input, config, callback)](#createpath-config-callback)
+    - [get(path, input, config, callback)](#getpath-payload-config--callback)
     - [Proxy methods of GET,POST,PUT,DELETE](#proxy-method-get-post-put-delete)
+    - [Chainable Function](#chainable-function)
 - [Promise](#promise)
 - [Rate Limiter](#rate-limiter)
 - [Retry Policy](#retry-policy)
@@ -41,10 +41,6 @@ For problems and suggestions please open [GitHub issue](https://github.com/postm
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Installation
-
-#### Requirements
-
-Node.js `>= 4.2` is required. 
 
 #### NPM installation
 
@@ -64,7 +60,8 @@ const Postmen = require('postmen');
 let api_key = 'api-key',
 // TODO region of the Postmen instance
 let region = 'sandbox';
-	
+let postmen = Postmen(api_key, region);
+
 // get all labels by using callback
 postmen.get('/labels', function (err, result) {
 	if (err) {
@@ -77,6 +74,13 @@ postmen.get('/labels', function (err, result) {
 // get all labels by using promise
 postmen.get('/labels').then(function (result) {
 		console.log(result);	
+}).catch(function (err) {
+    console.log(err);
+});
+
+// get all labels by using promise with chainable function
+postmen.useApiKey('ANOTHER_API_KEY').setRetry(false).get('/labels').then(function (result) {
+    console.log(result);	
 }).catch(function (err) {
     console.log(err);
 });
@@ -110,15 +114,16 @@ In order to get API key and choose a region refer to the [documentation](https:/
 | `config['raw']`               | —                                      | boolean | `false`   | To return API response as a raw string            |
 | `config['proxy']`             | —                                      | string   | null | Proxy credentials                                 |
 
-#### create(path, config, callback)
+#### create(path, input, config, callback)
 Creates postmen api object
 
 | Argument                       | Required                               | Type    | Default   | Description                                       |
 |--------------------------------|----------------------------------------|---------|-----------|---------------------------------------------------|
 | `path`                     | YES                                    | string  | N/A     | start with `/`, see available path [here](https://docs.postmen.com/index.html) key                                           |
-| `config`                      | YES                                     | object   | `null` | object of request config |
-| `config['body']`          |   YES                                    | string  | `null`     |      `POST` body                   |
-| `config['query']`             | NO                                     | object | `null`    | `query` object              |
+| `input`                      | YES                                     | object   | `null` | object of request config |
+| `input['body']`          |   YES                                    | string  | `null`     |      `POST` body                   |
+| `input['query']`             | NO                                     | object | `null`    | `query` object   |  
+| `config`                      | NO                                     | object   | `null` | object of request config |
 | `config['retry']`              | NO                                     | boolean | `true`    | override `default retry` if set, see [Retry policy](#retry-policy) |
 | `config['raw']`               | NO                                      | boolean | `false`   | if `true`, return result as `string`, else return as `object`           |
 | `callback`              | NO                                    | function | N/A   | the callback to handle error and result, the result is the response body of the request|
@@ -135,15 +140,16 @@ Creates postmen api object
 - [manifests_create.js](https://github.com/postmen/postmen-sdk-js/master/examples/manifests_create.js)
 - [cancel_labels_create.js](https://github.com/postmen/postmen-sdk-js/master/examples/cancel_labels_create.js)
 
-#### get(path, config,callback)
+#### get(path, input, config,callback)
 Get Postmen API  objects (list or a single objects).
 
 | Argument                       | Required                               | Type    | Default   | Description                                       |
 |--------------------------------|----------------------------------------|---------|-----------|---------------------------------------------------|
 | `path`                     | YES                                    | string  | N/A     | start with `/`, see available path [here](https://docs.postmen.com/index.html) key                                           |
-| `config`                      | NO                                     | object   | `null` | object of request config |
-| `config['body']`          |   NO                                    | string  | `null`     |      `POST` body                   |
-| `config['query']`             | NO                                     | object | `null`    | `query` object              |
+| `input`                      | NO                                     | object   | `null` | object of request config |
+| `input['body']`          |   NO                                    | string  | `null`     |      `POST` body                   |
+| `input['query']`             | NO                                     | object | `null`    | `query` object or string             |
+| `config`                      | YES                                     | object   | `null` | object of request config |
 | `config['retry']`              | NO                                     | boolean | `true`    | override `default retry` if set, see [Retry policy](#retry-policy) |
 | `config['raw']`               | NO                                     | boolean | `false`   | if `true`, return result as `string`, else return as `object`           |
 | `callback`              | NO                                    | function | N/A   | the callback to handle error and result, the result is the response body of the request|
@@ -151,11 +157,11 @@ Get Postmen API  objects (list or a single objects).
 ```javascript
 postmen.get( '/path/label-id', callback);
 // is equivalent to
-postmen.call('GET', '/path/label-id', {}, callback);
+postmen.call('GET', '/path/label-id', input, config, callback);
 
-postmen.get( '/path', config, callback);
+postmen.get( '/path', input, config, callback);
 // is equivalent to
-postmen.call('GET', '/path', config, callback);
+postmen.call('GET', '/path', input, config, callback);
 ```
 **API Docs:**
 - [GET /rates](https://docs.postmen.com/#rates-list-all-rates)
@@ -178,11 +184,28 @@ postmen.call('GET', '/path', config, callback);
 There are also interface `GET`, `POST`, `PUT`, `DELETE` which are proxy to `Postmen.call(...)`
 
 ```javascript
-postmen.call('GET', '/path', config, callback);
+postmen.call('GET', '/path', input, config, callback);
 // is equivalent to
-postmen.GET('/path', config, callback);
+postmen.GET('/path', input, config, callback);
 
 // So as `POST`, `PUT` and `DELETE`
+```
+
+#### Chainable Function
+Using chainable function to config now is accepted. Now postmen instance has these chainable function:
+- ```useApiKey()``` temporarily use an api_key to make request
+- ```setProxy()```  overwrite postmen proxy property
+- ```setRetry()``` overwrite postmen retry property  
+- ```setRaw()```  overwrite postmen raw property  
+
+```javascript
+postmen.useApiKey('ANOTHER_API_KEY').get('labels').then();
+// is equivalent to
+let input = {};
+let config = {
+	api_key: 'ANOTHER_API_KEY'
+}
+postmen.get('labels', input, config).then();
 ```
 
 ## Promise:
