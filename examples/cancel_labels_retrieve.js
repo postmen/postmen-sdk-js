@@ -5,20 +5,30 @@ const Credentials = require('./credentials');
 
 let postmen = Postmen(Credentials.api_key, Credentials.region);
 
+let input = {
+	// query: {},
+	// body: {}
+};
+
+let config = {};
+
 // get all cancel labels
-postmen.get('/cancel-labels', function (err, result) {
-	if (err) {
-		console.log(err);
-	} else {
-		console.log(result);
-	}
+postmen.get('/cancel-labels').then(function (result) {
+	console.log('RESULT:', result);
+}).catch(function (err) {
+	console.log('ERROR:', err);
 });
 
 // get a particular cancel labels
-postmen.get('/cancel-labels/put-your-label-id-here', function (err, result) {
-	if (err) {
-		console.log(err);
-	} else {
-		console.log(result);
-	}
+postmen.get('/cancel-labels/YOUR-LABEL-ID-HERE').then(function (result) {
+	console.log('RESULT:', result);
+}).catch(function (err) {
+	console.log('ERROR:', err);
+});
+
+// get a particular cancel labels with input and config
+postmen.get('/cancel-labels/YOUR-LABEL-ID-HERE', input, config).then(function (result) {
+	console.log('RESULT:', result);
+}).catch(function (err) {
+	console.log('ERROR:', err);
 });

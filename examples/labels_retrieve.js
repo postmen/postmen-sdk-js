@@ -5,27 +5,30 @@ const Credentials = require('./credentials');
 
 let postmen = Postmen(Credentials.api_key, Credentials.region);
 
+let input = {
+	// query: {},
+	// body: {}
+};
+
+let config = {};
+
 // get all labels
-postmen.get('/labels', function (err, result) {
-	if (err) {
-		console.log(err);
-	} else {
-		console.log(result);
-	}
+postmen.get('labels').then(function (result) {
+	console.log('RESULT:', result);
+}).catch(function (err) {
+	console.log('ERROR:', err);
 });
 
-// get all labels using promise
-// postmen.get('/labels').then(function (result) {
-//     console.log(result);
-// }).catch(function (err) {
-//     console.log(err);
-// });
+// get all labels with input and config
+postmen.get('labels', input, config).then(function (result) {
+	console.log('RESULT:', result);
+}).catch(function (err) {
+	console.log('ERROR:', err);
+});
 
-// get a particular  labels
-// postmen.get('/rates/put-your-label-id-here', function (err, result) {
-// 	if (err) {
-// 		console.log(err);
-// 	} else {
-// 		console.log(result);
-// 	}
-// });
+// get a particular labels
+postmen.get('labels/YOUR_LABEL_ID').then(function (result) {
+	console.log('RESULT:', result);
+}).catch(function (err) {
+	console.log('ERROR:', err);
+});

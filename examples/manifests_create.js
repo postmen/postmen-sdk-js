@@ -4,7 +4,7 @@ const Postmen = require('./../index');
 const Credentials = require('./credentials');
 
 // TODO put your shipper account ID here
-let shipper_account_id = 'SOME_ID';
+let shipper_account_id = 'YOUR_SHIPPER_ACCOUNT_ID';
 let postmen = Postmen(Credentials.api_key, Credentials.region);
 
 let payload = {
@@ -14,14 +14,15 @@ let payload = {
 	'async': false
 };
 
-let config = {
+let input = {
 	body: payload
 };
 
-postmen.create('/manifests', config, function (err, result) {
-	if (err) {
-		console.log(err);
-	} else {
-		console.log(result);
-	}
+let config = {
+};
+
+postmen.create('/manifests', input, config).then(function (result) {
+	console.log('ERROR:', result);
+}).catch(function (err) {
+	console.log('RESULT:', err);
 });

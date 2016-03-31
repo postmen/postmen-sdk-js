@@ -3,27 +3,38 @@
 const Postmen = require('./../index');
 const Credentials = require('./credentials');
 
-// TODO edit your proxy data here
+let proxy_str = 'http://USERNAME:PASSWORD@127.0.0.1:8888';
 let config = {
-	'proxy': 'http://127.0.0.1:8888'
+	'proxy': proxy_str
 };
 
+// Method 1: set proxy when new the Postmen instance
 let postmen = Postmen(Credentials.api_key, Credentials.region, config);
-
-// get a particular labels
-postmen.get('/label/put-your-label-id-here', function (err, result) {
-	if (err) {
-		console.log(err);
-	} else {
-		console.log(result);
-	}
+postmen.get('labels').then(function (result) {
+	console.log('RESULT:', result);
+}).catch(function (err) {
+	console.log('ERROR:', err);
 });
 
+// Method 2: set proxy when make request
+/*
+let postmen = Postmen(Credentials.api_key, Credentials.region);
+let input = {};
 // get all labels
-postmen.get('/label', function (err, result) {
-	if (err) {
-		console.log(err);
-	} else {
-		console.log(result);
-	}
+postmen.get('labels', input, config).then(function (result) {
+    console.log('RESULT:', result);
+}).catch(function (err) {
+	console.log('ERROR:', err);
 });
+*/
+
+// Method 3: set proxy using chainable function
+/*
+//let postmen = Postmen(Credentials.api_key, Credentials.region);
+//// get all labels
+//postmen.setProxy(proxy_str).get('labels').then(function (result) {
+//    console.log('RESULT:', result);
+//}).catch(function (err) {
+//	console.log('ERROR:', err);
+//});
+*/

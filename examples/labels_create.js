@@ -4,7 +4,7 @@ const Postmen = require('./../index');
 const Credentials = require('./credentials');
 
 // TODO put your shipper account ID here
-let shipper_account_id = 'SOME_ID';
+let shipper_account_id = 'YOUR_SHIPPER_ACCOUNT_ID';
 let postmen = Postmen(Credentials.api_key, Credentials.region);
 
 let payload = {
@@ -91,22 +91,15 @@ let payload = {
 	}
 };
 
-let config = {
+let input = {
 	body: payload
 };
 
-// create labels by using callback
-postmen.create('/labels', config, function (err, result) {
-	if (err) {
-		console.log(err);
-	} else {
-		console.log(result);
-	}
-});
+let config = {};
 
-// create labels by using promise
-// postmen.create('/labels',config).then(function (result) {
-//     console.log(result);
-// }).catch(function (err) {
-//     console.log(err);
-// });
+// create labels with input and config
+postmen.create('/labels', input, config).then(function (result) {
+	console.log('ERROR:', result);
+}).catch(function (err) {
+	console.log('RESULT:', err);
+});

@@ -4,7 +4,7 @@ const Postmen = require('./../index');
 const Credentials = require('./credentials');
 
 let postmen = Postmen(Credentials.api_key, Credentials.region);
-let label_id = 'some_label_id';
+let label_id = 'YOUR_LABEL_ID';
 
 let payload = {
 	'label': {
@@ -12,14 +12,14 @@ let payload = {
 	}
 };
 
-let config = {
+let input = {
 	body: payload
 };
 
-postmen.create('/cancel-labels', config, function (err, result) {
-	if (err) {
-		console.log(err);
-	} else {
-		console.log(result);
-	}
+let config = {};
+
+postmen.create('/cancel-labels', input, config).then(function (result) {
+	console.log('RESULT:', result);
+}).catch(function (err) {
+	console.log('ERROR:', err);
 });

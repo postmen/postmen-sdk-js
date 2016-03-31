@@ -6,9 +6,9 @@ const expect = chai.expect;
 // const request = require('request');
 const Postmen = require('./../index');
 
-let api_key = 'SOME_API_KEY';
-let region = 'SOME_REGION';
-let default_endpoint = 'https://SOME_REGION-api.postmen.com/v3';
+let api_key = 'FAKE_API_KEY';
+let region = 'FAKE_REGION';
+let default_endpoint = 'https://FAKE_REGION-api.postmen.com/v3';
 let default_proxy = null;
 let default_retry = true;
 
@@ -176,6 +176,30 @@ describe('Test constructor', function () {
 			}
 		});
 
+		it('should return error, if config is not null/undefined/object', function () {
+			let expected_error = 'ConstructorError: Invalid config value';
+			try {
+				Postmen(api_key, region, 999);
+			} catch (e) {
+				expect(e.message).to.equal(expected_error);
+			}
+			try {
+				Postmen(api_key, region, true);
+			} catch (e) {
+				expect(e.message).to.equal(expected_error);
+			}
+			try {
+				Postmen(api_key, region, false);
+			} catch (e) {
+				expect(e.message).to.equal(expected_error);
+			}
+			try {
+				Postmen(api_key, region, 'config');
+			} catch (e) {
+				expect(e.message).to.equal(expected_error);
+			}
+		});
+
 		it('should return error, if endpoint is defined but not string', function () {
 			let expected_error = 'ConstructorError: Invalid Endpoint value';
 			try {
@@ -195,6 +219,30 @@ describe('Test constructor', function () {
 			}
 			try {
 				Postmen(api_key, region, {endpoint: {}});
+			} catch (e) {
+				expect(e.message).to.equal(expected_error);
+			}
+		});
+
+		it('should return error, if api_key is null/undefined/not string by using the config', function () {
+			let expected_error = 'ConstructorError: Invalid API key';
+			try {
+				Postmen(api_key, region, {api_key: 999});
+			} catch (e) {
+				expect(e.message).to.equal(expected_error);
+			}
+			try {
+				Postmen(api_key, region, {api_key: true});
+			} catch (e) {
+				expect(e.message).to.equal(expected_error);
+			}
+			try {
+				Postmen(api_key, region, {api_key: false});
+			} catch (e) {
+				expect(e.message).to.equal(expected_error);
+			}
+			try {
+				Postmen(api_key, region, {api_key: {}});
 			} catch (e) {
 				expect(e.message).to.equal(expected_error);
 			}
