@@ -60,6 +60,7 @@ const Postmen = require('postmen');
 let api_key = 'api-key',
 // TODO region of the Postmen instance
 let region = 'sandbox';
+
 let postmen = Postmen(api_key, region);
 
 // get all labels by using callback
