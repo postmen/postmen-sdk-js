@@ -107,7 +107,7 @@ In order to get API key and choose a region refer to the [documentation](https:/
 | Argument                       | Required                               | Type    | Default   | Description                                       |
 |--------------------------------|----------------------------------------|---------|-----------|---------------------------------------------------|
 | `api_key`                     | YES                                    | string  | N/A     | API key                                           |
-| `region`                      | NO if `config['endpoint']` is set     | string  | N/A     | API region (`sandbox`, `production`)              |
+| `region`                      | YES    | string  | N/A     | API region (`sandbox`, `production`)              |
 | `config`                      | NO                                     | object   | null | Options                                           |
 | `config['endpoint']`          | —                                      | string  | null     | Custom URL API endpoint                           |
 | `config['retry']`             | —                                      | boolean | `true`    | override `default retry` if set, see [Retry policy](#retry-policy)   |
