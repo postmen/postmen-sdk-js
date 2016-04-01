@@ -290,49 +290,49 @@ For each API method SDK provides Node.js wrapper. Use the table below to find SD
   <tr>
     <th>rates</th>
     <th><sub><a href="https://github.com/postmen/postmen-sdk-js/master/examples/rates_create.js#L78">
-      <code>.create('/rates', config, callback)</code>
+      <code>.create('/rates', input, config, callback)</code>
     </a></sub></th>
     <th><sub><a href="https://github.com/postmen/postmen-sdk-js/master/examples/rates_retrieve.js#L9">
-      <code>.get('/rates', config, callback)</code>
+      <code>.get('/rates', input, config, callback)</code>
     </a></sub></th>
     <th><sub><a href="https://github.com/postmen/postmen-sdk-js/master/examples/rates_retrieve.js#L18">
-      <code>.get('rates/rate-id-here', config, callback)</code>
+      <code>.get('rates/rate-id-here', input, config, callback)</code>
     </a></sub></th>
   </tr>
   <tr>
     <th>labels</th>
     <th><sub><a href="https://github.com/postmen/postmen-sdk-js/master/examples/labels_create.js#L98">
-      <code>.create('/labels', config, callback)</code>
+      <code>.create('/labels', input, config, callback)</code>
     </a></sub></th>
     <th><sub><a href="https://github.com/postmen/postmen-sdk-js/master/examples/labels_retrieve.js#L9">
-      <code>.get('/labels', config, callback))</code>
+      <code>.get('/labels', input, config, callback))</code>
     </a></sub></th>
     <th><sub><a href="https://github.com/postmen/postmen-sdk-js/master/examples/labels_retrieve.js#L18">
-      <code>.get('/labels/label-id-here', config, callback))</code>
+      <code>.get('/labels/label-id-here', input, config, callback))</code>
     </a></sub></th>
   </tr>
   <tr>
     <th>manifest</th>
     <th><sub><a href="https://github.com/postmen/postmen-sdk-js/master/examples/manifests_create.js">
-      <code>.create('/manifest', config, callback)</code>
+      <code>.create('/manifest', input, config, callback)</code>
     </a></sub></th>
     <th><sub><a href="https://github.com/postmen/postmen-sdk-js/master/examples/manifests_retrieve.js#L9">
-      <code>.get('/manifest', config, callback)</code>
+      <code>.get('/manifest', input, config, callback)</code>
     </a></sub></th>
     <th><sub><a href="https://github.com/postmen/postmen-sdk-js/master/examples/manifests_retrieve.js#L19">
-      <code>.get('/manifest/manifest-id-here', config, callback)</code>
+      <code>.get('/manifest/manifest-id-here', input, config, callback)</code>
     </a></sub></th>
   </tr>
   <tr>
     <th>cancel-labels</th>
     <th><sub><a href="https://github.com/postmen/postmen-sdk-js/master/examples/cancel_labels_create.js">
-      <code>.create('/cancel-labels', config, callback)</code>
+      <code>.create('/cancel-labels', input, config, callback)</code>
     </a></sub></th>
     <th><sub><a href="https://github.com/postmen/postmen-sdk-js/master/examples/cancel_labels_retrieve.js#L9">
-      <code>.get('/cancel-labels', config, callback)</code>
+      <code>.get('/cancel-labels', input, config, callback)</code>
     </a></sub></th>
     <th><sub><a href="https://github.com/postmen/postmen-sdk-js/master/examples/cancel_labels_retrieve.js#L18">
-      <code>.get('/cancel-labels/cancel-labels-id-here', config, callback)</code>
+      <code>.get('/cancel-labels/cancel-labels-id-here', input, config, callback)</code>
     </a></sub></th>
   </tr>
 </table>
