@@ -683,20 +683,8 @@ describe('Test postmen.call()', function () {
 	});
 
 	describe('Test retry flag', function () {
-		// let request_object = {
-		// 	headers: {
-		// 		'postmen-api-key': 'FAKE_API_KEY',
-		// 		'Content-Type': 'application/json',
-		// 		Connection: 'keep-alive',
-		// 		'x-postmen-agent': '1.0.0'
-		// 	},
-		// 	url: 'https://FAKE_REGION-api.postmen.com/v3/labels',
-		// 	method: 'GET',
-		// 	json: true
-		// };
-
 		describe('Test handlePayload', function () {
-			it('should _retryTooManyRequestError if ratelimit.remaining < 0 ', function (done) {
+			it('should called _retryTooManyRequestError if ratelimit.remaining < 0 ', function (done) {
 				let payload = {
 					request_object: {
 						headers: {
@@ -736,7 +724,7 @@ describe('Test postmen.call()', function () {
 				retry_count: 5
 			};
 
-			it('should call _retryRequestError if ETIMEDOUT', function (done) {
+			it('should call _retryRequestError if ETIMEDOUT error', function (done) {
 				let postmen = Postmen(api_key, region);
 				let error = new Error();
 				error.code = 'ETIMEDOUT';
@@ -750,7 +738,35 @@ describe('Test postmen.call()', function () {
 				});
 			});
 
-			it('should not retry _retryRequestError after retry 5 times', function (done) {
+			it('should call _retryRequestError if ECONNRESET error', function (done) {
+				let postmen = Postmen(api_key, region);
+				let error = new Error();
+				error.code = 'ECONNRESET';
+				sandbox.stub(postmen, 'request', function (request_object, callback) {
+					callback(error);
+				});
+				let spy = sandbox.spy(Handler, '_retryRequestError');
+				Handler._makeRequest(postmen, payload, function (err, result) {
+					expect(spy.called).to.deep.equal(true);
+					done();
+				});
+			});
+
+			it('should call _retryRequestError if ECONNREFUSED error', function (done) {
+				let postmen = Postmen(api_key, region);
+				let error = new Error();
+				error.code = 'ECONNREFUSED';
+				sandbox.stub(postmen, 'request', function (request_object, callback) {
+					callback(error);
+				});
+				let spy = sandbox.spy(Handler, '_retryRequestError');
+				Handler._makeRequest(postmen, payload, function (err, result) {
+					expect(spy.called).to.deep.equal(true);
+					done();
+				});
+			});
+
+			it('should not call _retryRequestError after retry 5 times', function (done) {
 				let postmen = Postmen(api_key, region);
 				let error = new Error();
 				error.code = 'ETIMEDOUT';
@@ -797,7 +813,7 @@ describe('Test postmen.call()', function () {
 				done();
 			});
 
-			it('should throw when call retry _retryRequestError if config retry = false', function (done) {
+			it('should throw error when call _retryRequestError with config retry = false', function (done) {
 				let error = new Error();
 				let config = {
 					retry: false
@@ -843,7 +859,7 @@ describe('Test postmen.call()', function () {
 				headers: {}
 			};
 
-			it('should call _retryApiError with get a RetriableApiError error', function (done) {
+			it('should call _retryApiError when get a RetriableApiError error', function (done) {
 				payload.retry = false;
 				let postmen = Postmen(api_key, region);
 				sandbox.stub(postmen, 'request', function (request_object, callback) {
