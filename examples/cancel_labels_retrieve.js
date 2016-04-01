@@ -7,7 +7,6 @@ let postmen = Postmen(Credentials.api_key, Credentials.region);
 
 let input = {
 	// query: {},
-	// body: {}
 };
 
 let config = {};

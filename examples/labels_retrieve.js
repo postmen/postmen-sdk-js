@@ -6,8 +6,7 @@ const Credentials = require('./credentials');
 let postmen = Postmen(Credentials.api_key, Credentials.region);
 
 let input = {
-	// query: {},
-	// body: {}
+	// query: {status:'created'} or 'status=created'
 };
 
 let config = {};
