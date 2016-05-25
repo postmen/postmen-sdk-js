@@ -2,10 +2,11 @@
 
 module.exports = {
 	coverage: {
-		src: ['test/**.js'],
+		src: ['test/**/*.js'],
 		options: {
 			coverage: true,
-			reporter: 'spec'
+			reporter: 'spec',
+			istanbulOptions: ['--include-all-sources', '-x', '**/grunt-config/**', '-x', 'Gruntfile.js', '-x', '**/examples/**']
 		}
 	}
 };

@@ -1,3 +1,5 @@
+# This files will be used by AfterShip as a source of .npmignore by concatenating .gitignore with this file
+
 .editorconfig
 .eslintrc
 .publishignore
@@ -8,4 +10,5 @@ grunt-tasks
 gulpfile.js
 Gruntfile.js
 log
+scripts/ci
 test

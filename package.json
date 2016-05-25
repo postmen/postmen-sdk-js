@@ -18,7 +18,14 @@
   "engines": {
     "node": ">= 4.2"
   },
-  "dependencies": {},
+  "scripts": {
+    "lint": "grunt lint",
+    "test": "grunt lint && grunt coverage"
+  },
+  "dependencies": {
+    "lodash": "^4.5.0",
+    "request": "^2.69.0"
+  },
   "devDependencies": {
     "eslint": "^1.10.3",
     "eslint-config-aftership": "^1.5.0",
@@ -27,7 +34,11 @@
     "grunt-mocha-istanbul": "^3.0.1",
     "istanbul": "^0.4.1",
     "load-grunt-config": "^0.19.1",
-    "mocha": "^2.3.4"
+    "mocha": "^2.3.4",
+    "nock": "^7.0.2",
+    "chai": "^3.4.1",
+    "sinon": "^1.17.2",
+    "http-proxy": "^1.12.0"
   },
   "keywords": [
     "postman",
@@ -36,5 +47,8 @@
     "postmen sdk"
   ],
   "license": "MIT",
+  "pre-commit": [
+    "lint"
+  ],
   "private": false
 }
