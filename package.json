@@ -1,7 +1,7 @@
 {
   "name": "postmen",
   "description": "Postmen SDK for JavaScript in the browser and Node.js",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "homepage": "https://github.com/Postmen/sdk-js",
   "author": {
     "name": "Postmen",
