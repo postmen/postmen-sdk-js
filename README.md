@@ -1,8 +1,8 @@
 # postmen
 
-[![Build Status](https://travis-ci.org/postmen/sdk-js.svg?branch=master)](https://travis-ci.org/postmen/sdk-js)
-[![codecov.io](https://codecov.io/github/postmen/sdk-js/coverage.svg?branch=master)](https://codecov.io/github/postmen/sdk-js?branch=master)
-[![Dependency Status](https://gemnasium.com/postmen/sdk-js.svg)](https://gemnasium.com/postmen/sdk-js)
+[![Build Status](https://travis-ci.org/postmen/postmen-sdk-js.svg?branch=master)](https://travis-ci.org/postmen/postmen-sdk-js)
+[![codecov](https://codecov.io/gh/postmen/postmen-sdk-js/branch/master/graph/badge.svg)](https://codecov.io/gh/postmen/postmen-sdk-js)
+[![Dependency Status](https://gemnasium.com/badges/github.com/postmen/postmen-sdk-js.svg)](https://gemnasium.com/github.com/postmen/postmen-sdk-js)
 
 [![node](https://img.shields.io/node/v/postmen.svg)]()
 [![npm](https://img.shields.io/npm/v/postmen.svg)]()
