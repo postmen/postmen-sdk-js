@@ -9,7 +9,7 @@
 [![npm](https://img.shields.io/npm/dm/postmen.svg)]()
 [![npm](https://img.shields.io/npm/l/postmen.svg)]()
 
-![codecov.io](http://codecov.io/github/postmen/sdk-js/branch.svg?branch=master)
+![codecov.io](https://codecov.io/gh/postmen/postmen-sdk-js/branch/master/graphs/commits.svg)
 
 ## Introduction
 Node.js SDK for [Postmen API](https://docs.postmen.com/).
