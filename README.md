@@ -54,7 +54,7 @@ In order to get API key and choose a region refer to the [documentation](https:/
 
 ```javascript
 'use strict';
- 
+
 const Postmen = require('postmen');
 // TODO key of the Postmen instance
 let api_key = 'api-key',
@@ -74,14 +74,14 @@ postmen.get('/labels', function (err, result) {
 
 // get all labels by using promise
 postmen.get('/labels').then(function (result) {
-		console.log(result);	
+		console.log(result);
 }).catch(function (err) {
     console.log(err);
 });
 
 // get all labels by using promise with chainable function
 postmen.useApiKey('ANOTHER_API_KEY').setRetry(false).get('/labels').then(function (result) {
-    console.log(result);	
+    console.log(result);
 }).catch(function (err) {
     console.log(err);
 });
@@ -104,30 +104,21 @@ postmen.get('/rates/put-your-label-id-here', function (err, result) {
 Initiate Postmen SDK object.
 In order to get API key and choose a region refer to the [documentation](https://docs.postmen.com/overview.html).
 
-| Argument                       | Required                               | Type    | Default   | Description                                       |
-|--------------------------------|----------------------------------------|---------|-----------|---------------------------------------------------|
-| `api_key`                     | YES                                    | string  | N/A     | API key                                           |
-| `region`                      | YES    | string  | N/A     | API region (`sandbox`, `production`)              |
-| `config`                      | NO                                     | object   | null | Options                                           |
-| `config['endpoint']`          | —                                      | string  | null     | Custom URL API endpoint                           |
-| `config['retry']`             | —                                      | boolean | `true`    | override `default retry` if set, see [Retry policy](#retry-policy)   |
-| `config['rate']`              | —                                      | boolean | `true`    | Wait before API call if rate limit exceeded or retry on 429 error |
-| `config['raw']`               | —                                      | boolean | `false`   | To return API response as a raw string            |
-| `config['proxy']`             | —                                      | string   | null | Proxy credentials                                 |
+
 
 #### create(path, input, config, callback)
 Creates postmen api object
 
-| Argument                       | Required                               | Type    | Default   | Description                                       |
-|--------------------------------|----------------------------------------|---------|-----------|---------------------------------------------------|
-| `path`                     | YES                                    | string  | N/A     | start with `/`, see available path [here](https://docs.postmen.com/index.html) key                                           |
-| `input`                      | YES                                     | object   | `null` | object of request config |
-| `input['body']`          |   YES                                    | string  | `null`     |      `POST` body                   |
-| `input['query']`             | NO                                     | object | `null`    | `query` object   |  
-| `config`                      | NO                                     | object   | `null` | object of request config |
-| `config['retry']`              | NO                                     | boolean | `true`    | override `default retry` if set, see [Retry policy](#retry-policy) |
-| `config['raw']`               | NO                                      | boolean | `false`   | if `true`, return result as `string`, else return as `object`           |
-| `callback`              | NO                                    | function | N/A   | the callback to handle error and result, the result is the response body of the request|
+| Argument          | Required | Type     | Default | Description                                                                             |
+|-------------------+----------+----------+---------+-----------------------------------------------------------------------------------------|
+| `path`            | YES      | string   | N/A     | start with `/`, see available path [here](https://docs.postmen.com/index.html) key      |
+| `input`           | YES      | object   | `null`  | object of request config                                                                |
+| `input['body']`   | YES      | string   | `null`  | `POST` body                                                                             |
+| `input['query']`  | NO       | object   | `null`  | `query` object                                                                          |
+| `config`          | NO       | object   | `null`  | object of request config                                                                |
+| `config['retry']` | NO       | boolean  | `true`  | override `default retry` if set, see [Retry policy](#retry-policy)                      |
+| `config['raw']`   | NO       | boolean  | `false` | if `true`, return result as `string`, else return as `object`                           |
+| `callback`        | NO       | function | N/A     | the callback to handle error and result, the result is the response body of the request |
 
 **API Docs:**
 - [POST /rates](https://docs.postmen.com/#rates-calculate-rates)
@@ -144,16 +135,17 @@ Creates postmen api object
 #### get(path, input, config,callback)
 Get Postmen API  objects (list or a single objects).
 
-| Argument                       | Required                               | Type    | Default   | Description                                       |
-|--------------------------------|----------------------------------------|---------|-----------|---------------------------------------------------|
-| `path`                     | YES                                    | string  | N/A     | start with `/`, see available path [here](https://docs.postmen.com/index.html) key                                           |
-| `input`                      | NO                                     | object   | `null` | object of request config |
-| `input['body']`          |   NO                                    | string  | `null`     |      `POST` body                   |
-| `input['query']`             | NO                                     | object | `null`    | `query` object or string             |
-| `config`                      | NO                                     | object   | `null` | object of request config |
-| `config['retry']`              | NO                                     | boolean | `true`    | override `default retry` if set, see [Retry policy](#retry-policy) |
-| `config['raw']`               | NO                                     | boolean | `false`   | if `true`, return result as `string`, else return as `object`           |
-| `callback`              | NO                                    | function | N/A   | the callback to handle error and result, the result is the response body of the request|
+| Argument          | Required | Type     | Default | Description                                                                             |
+|-------------------+----------+----------+---------+-----------------------------------------------------------------------------------------|
+| `path`            | YES      | string   | N/A     | start with `/`, see available path [here](https://docs.postmen.com/index.html) key      |
+| `input`           | NO       | object   | `null`  | object of request config                                                                |
+| `input['body']`   | NO       | string   | `null`  | `POST` body                                                                             |
+| `input['query']`  | NO       | object   | `null`  | `query` object or string                                                                |
+| `config`          | NO       | object   | `null`  | object of request config                                                                |
+| `config['retry']` | NO       | boolean  | `true`  | override `default retry` if set, see [Retry policy](#retry-policy)                      |
+| `config['raw']`   | NO       | boolean  | `false` | if `true`, return result as `string`, else return as `object`                           |
+| `config['csv']`   | NO       | boolean  | `false` | if `true`, then header.source will be set to `csv` for create label process             |
+| `callback`        | NO       | function | N/A     | the callback to handle error and result, the result is the response body of the request |
 
 ```javascript
 postmen.get( '/path/label-id', callback);
@@ -196,8 +188,8 @@ postmen.GET('/path', input, config, callback);
 Using chainable function to config now is accepted. Now postmen instance has these chainable function:
 - ```useApiKey()``` temporarily use an api_key to make request
 - ```setProxy()```  overwrite postmen proxy property
-- ```setRetry()``` overwrite postmen retry property  
-- ```setRaw()```  overwrite postmen raw property  
+- ```setRetry()``` overwrite postmen retry property
+- ```setRaw()```  overwrite postmen raw property
 
 ```javascript
 postmen.useApiKey('ANOTHER_API_KEY').get('labels').then();
@@ -254,10 +246,10 @@ You can set the `retry` flag
 #### Full list
 All examples avalible listed in the table below.
 
-| File                                                                                                                     | Description                        |
-|--------------------------------------------------------------------------------------------------------------------------|------------------------------------|
-| [rates_create.js](https://github.com/postmen/postmen-sdk-js/master/examples/rates_create.js)                     | `rates` object creation            |
-| [rates_retrieve.js](https://github.com/postmen/postmen-sdk-js/master/examples/rates_retrieve.js)                 | `rates` object(s) retrieve         |
+| File                                                                                                             | Description                        |
+|------------------------------------------------------------------------------------------------------------------+------------------------------------|
+| [rates\_create.js](https://github.com/postmen/postmen-sdk-js/master/examples/rates_create.js)                    | `rates` object creation            |
+| [rates\_retrieve.js](https://github.com/postmen/postmen-sdk-js/master/examples/rates_retrieve.js)                | `rates` object(s) retrieve         |
 | [labels_create.js](https://github.com/postmen/postmen-sdk-js/master/examples/labels_create.js)                   | `labels` object creation           |
 | [labels_retrieve.js](https://github.com/postmen/postmen-sdk-js/master/examples/labels_retrieve.js)               | `labels` object(s) retrieve        |
 | [manifests_create.js](https://github.com/postmen/postmen-sdk-js/master/examples/manifests_create.js)             | `manifests` object creation        |
@@ -280,63 +272,12 @@ Check the file you want to run before run. Some require you to set additional va
 
 For each API method SDK provides Node.js wrapper. Use the table below to find SDK method and example that match your need.
 
-<table>
-  <tr>
-    <th>Model \ Action</th>
-    <th>create</th>
-    <th>get all</th>
-    <th>get by id</th>
-  </tr>
-  <tr>
-    <th>rates</th>
-    <th><sub><a href="https://github.com/postmen/postmen-sdk-js/master/examples/rates_create.js#L78">
-      <code>.create('/rates', input, config, callback)</code>
-    </a></sub></th>
-    <th><sub><a href="https://github.com/postmen/postmen-sdk-js/master/examples/rates_retrieve.js#L9">
-      <code>.get('/rates', input, config, callback)</code>
-    </a></sub></th>
-    <th><sub><a href="https://github.com/postmen/postmen-sdk-js/master/examples/rates_retrieve.js#L18">
-      <code>.get('rates/rate-id-here', input, config, callback)</code>
-    </a></sub></th>
-  </tr>
-  <tr>
-    <th>labels</th>
-    <th><sub><a href="https://github.com/postmen/postmen-sdk-js/master/examples/labels_create.js#L98">
-      <code>.create('/labels', input, config, callback)</code>
-    </a></sub></th>
-    <th><sub><a href="https://github.com/postmen/postmen-sdk-js/master/examples/labels_retrieve.js#L9">
-      <code>.get('/labels', input, config, callback))</code>
-    </a></sub></th>
-    <th><sub><a href="https://github.com/postmen/postmen-sdk-js/master/examples/labels_retrieve.js#L18">
-      <code>.get('/labels/label-id-here', input, config, callback))</code>
-    </a></sub></th>
-  </tr>
-  <tr>
-    <th>manifest</th>
-    <th><sub><a href="https://github.com/postmen/postmen-sdk-js/master/examples/manifests_create.js">
-      <code>.create('/manifest', input, config, callback)</code>
-    </a></sub></th>
-    <th><sub><a href="https://github.com/postmen/postmen-sdk-js/master/examples/manifests_retrieve.js#L9">
-      <code>.get('/manifest', input, config, callback)</code>
-    </a></sub></th>
-    <th><sub><a href="https://github.com/postmen/postmen-sdk-js/master/examples/manifests_retrieve.js#L19">
-      <code>.get('/manifest/manifest-id-here', input, config, callback)</code>
-    </a></sub></th>
-  </tr>
-  <tr>
-    <th>cancel-labels</th>
-    <th><sub><a href="https://github.com/postmen/postmen-sdk-js/master/examples/cancel_labels_create.js">
-      <code>.create('/cancel-labels', input, config, callback)</code>
-    </a></sub></th>
-    <th><sub><a href="https://github.com/postmen/postmen-sdk-js/master/examples/cancel_labels_retrieve.js#L9">
-      <code>.get('/cancel-labels', input, config, callback)</code>
-    </a></sub></th>
-    <th><sub><a href="https://github.com/postmen/postmen-sdk-js/master/examples/cancel_labels_retrieve.js#L18">
-      <code>.get('/cancel-labels/cancel-labels-id-here', input, config, callback)</code>
-    </a></sub></th>
-  </tr>
-</table>
-
+| Model \ Action | create                                                                                                                                               | get all                                                                                                                                                | get by id                                                                                                                                                                     |
+|----------------+------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| rates          | <sub>[`.create('/rates', input, config, callback)`](https://github.com/postmen/postmen-sdk-js/master/examples/rates_create.js#L78)</sub>             | <sub>[`.get('/rates', input, config, callback)`](https://github.com/postmen/postmen-sdk-js/master/examples/rates_retrieve.js#L9)</sub>                 | <sub>[`.get('rates/rate-id-here', input, config, callback)`](https://github.com/postmen/postmen-sdk-js/master/examples/rates_retrieve.js#L18)</sub>                           |
+| labels         | <sub>[`.create('/labels', input, config, callback)`](https://github.com/postmen/postmen-sdk-js/master/examples/labels_create.js#L98)</sub>           | <sub>[`.get('/labels', input, config, callback))`](https://github.com/postmen/postmen-sdk-js/master/examples/labels_retrieve.js#L9)</sub>              | <sub>[`.get('/labels/label-id-here', input, config, callback))`](https://github.com/postmen/postmen-sdk-js/master/examples/labels_retrieve.js#L18)</sub>                      |
+| manifest       | <sub>[`.create('/manifest', input, config, callback)`](https://github.com/postmen/postmen-sdk-js/master/examples/manifests_create.js)</sub>          | <sub>[`.get('/manifest', input, config, callback)`](https://github.com/postmen/postmen-sdk-js/master/examples/manifests_retrieve.js#L9)</sub>          | <sub>[`.get('/manifest/manifest-id-here', input, config, callback)`](https://github.com/postmen/postmen-sdk-js/master/examples/manifests_retrieve.js#L19)</sub>               |
+| cancel-labels  | <sub>[`.create('/cancel-labels', input, config, callback)`](https://github.com/postmen/postmen-sdk-js/master/examples/cancel_labels_create.js)</sub> | <sub>[`.get('/cancel-labels', input, config, callback)`](https://github.com/postmen/postmen-sdk-js/master/examples/cancel_labels_retrieve.js#L9)</sub> | <sub>[`.get('/cancel-labels/cancel-labels-id-here', input, config, callback)`](https://github.com/postmen/postmen-sdk-js/master/examples/cancel_labels_retrieve.js#L18)</sub> |
 ## Testing
 ```
 mocha --recursive
