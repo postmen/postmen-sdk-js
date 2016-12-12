@@ -260,6 +260,31 @@ describe('Test postmen.call()', function () {
 			});
 		});
 
+		it('should work with csv option', function (done) {
+			postmen.create('labels', {
+				body: body
+			}, {
+				csv: true
+			}, function (err, result) {
+				let request_object = {
+					headers: {
+						'Connection': 'keep-alive',
+						'postmen-api-key': api_key,
+						'Content-Type': 'application/json',
+						'x-postmen-agent': '1.0.0',
+						'source': 'csv'
+					},
+					url: default_endpoint + '/labels',
+					body: body,
+					method: 'POST',
+					json: true
+				};
+				expect(postmen.request.args[0][0]).to.deep.equal(request_object);
+				expect(result).to.deep.equal(expected_result);
+				done();
+			});
+		});
+
 		it('should work with create(path, {body}) with promise', function (done) {
 			postmen.create('labels', {
 				body: body
