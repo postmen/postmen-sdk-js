@@ -104,7 +104,16 @@ postmen.get('/rates/put-your-label-id-here', function (err, result) {
 Initiate Postmen SDK object.
 In order to get API key and choose a region refer to the [documentation](https://docs.postmen.com/overview.html).
 
-
+| Argument             | Required | Type    | Default | Description                                                        |
+|----------------------+----------+---------+---------+--------------------------------------------------------------------|
+| `api_key`            | YES      | string  | N/A     | API key                                                            |
+| `region`             | YES      | string  | N/A     | API region (`sandbox`, `production`)                               |
+| `config`             | NO       | object  | null    | Options                                                            |
+| `config['endpoint']` | —        | string  | null    | Custom URL API endpoint                                            |
+| `config['retry']`    | —        | boolean | `true`  | override `default retry` if set, see [Retry policy](#retry-policy) |
+| `config['rate']`     | —        | boolean | `true`  | Wait before API call if rate limit exceeded or retry on 429 error  |
+| `config['raw']`      | —        | boolean | `false` | To return API response as a raw string                             |
+| `config['proxy']`    | —        | string  | null    | Proxy credentials                                                  |
 
 #### create(path, input, config, callback)
 Creates postmen api object
