@@ -153,7 +153,6 @@ Get Postmen API  objects (list or a single objects).
 | `config`          | NO       | object   | `null`  | object of request config                                                                |
 | `config['retry']` | NO       | boolean  | `true`  | override `default retry` if set, see [Retry policy](#retry-policy)                      |
 | `config['raw']`   | NO       | boolean  | `false` | if `true`, return result as `string`, else return as `object`                           |
-| `config['csv']`   | NO       | boolean  | `false` | if `true`, then header.source will be set to `csv` for create label process             |
 | `callback`        | NO       | function | N/A     | the callback to handle error and result, the result is the response body of the request |
 
 ```javascript

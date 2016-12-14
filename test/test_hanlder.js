@@ -260,19 +260,20 @@ describe('Test postmen.call()', function () {
 			});
 		});
 
-		it('should work with csv option', function (done) {
+		it('should work with `platform` header', function (done) {
 			postmen.create('labels', {
-				body: body
-			}, {
-				csv: true
-			}, function (err, result) {
+				body: body,
+				headers: {
+					platform: 'csv'
+				}
+			}, {}, function (err, result) {
 				let request_object = {
 					headers: {
 						'Connection': 'keep-alive',
 						'postmen-api-key': api_key,
 						'Content-Type': 'application/json',
 						'x-postmen-agent': '1.0.0',
-						'source': 'csv'
+						'platform': 'csv'
 					},
 					url: default_endpoint + '/labels',
 					body: body,
