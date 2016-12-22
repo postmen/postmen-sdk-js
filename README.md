@@ -105,7 +105,7 @@ Initiate Postmen SDK object.
 In order to get API key and choose a region refer to the [documentation](https://docs.postmen.com/overview.html).
 
 | Argument             | Required | Type    | Default | Description                                                        |
-|----------------------+----------+---------+---------+--------------------------------------------------------------------|
+|----------------------|----------|---------|---------|--------------------------------------------------------------------|
 | `api_key`            | YES      | string  | N/A     | API key                                                            |
 | `region`             | YES      | string  | N/A     | API region (`sandbox`, `production`)                               |
 | `config`             | NO       | object  | null    | Options                                                            |
@@ -119,7 +119,7 @@ In order to get API key and choose a region refer to the [documentation](https:/
 Creates postmen api object
 
 | Argument          | Required | Type     | Default | Description                                                                             |
-|-------------------+----------+----------+---------+-----------------------------------------------------------------------------------------|
+|-------------------|----------|----------|---------|-----------------------------------------------------------------------------------------|
 | `path`            | YES      | string   | N/A     | start with `/`, see available path [here](https://docs.postmen.com/index.html) key      |
 | `input`           | YES      | object   | `null`  | object of request config                                                                |
 | `input['body']`   | YES      | string   | `null`  | `POST` body                                                                             |
@@ -145,7 +145,7 @@ Creates postmen api object
 Get Postmen API  objects (list or a single objects).
 
 | Argument          | Required | Type     | Default | Description                                                                             |
-|-------------------+----------+----------+---------+-----------------------------------------------------------------------------------------|
+|-------------------|----------|----------|---------|-----------------------------------------------------------------------------------------|
 | `path`            | YES      | string   | N/A     | start with `/`, see available path [here](https://docs.postmen.com/index.html) key      |
 | `input`           | NO       | object   | `null`  | object of request config                                                                |
 | `input['body']`   | NO       | string   | `null`  | `POST` body                                                                             |
@@ -255,7 +255,7 @@ You can set the `retry` flag
 All examples avalible listed in the table below.
 
 | File                                                                                                             | Description                        |
-|------------------------------------------------------------------------------------------------------------------+------------------------------------|
+|------------------------------------------------------------------------------------------------------------------|------------------------------------|
 | [rates\_create.js](https://github.com/postmen/postmen-sdk-js/master/examples/rates_create.js)                    | `rates` object creation            |
 | [rates\_retrieve.js](https://github.com/postmen/postmen-sdk-js/master/examples/rates_retrieve.js)                | `rates` object(s) retrieve         |
 | [labels_create.js](https://github.com/postmen/postmen-sdk-js/master/examples/labels_create.js)                   | `labels` object creation           |
@@ -281,7 +281,7 @@ Check the file you want to run before run. Some require you to set additional va
 For each API method SDK provides Node.js wrapper. Use the table below to find SDK method and example that match your need.
 
 | Model \ Action | create                                                                                                                                               | get all                                                                                                                                                | get by id                                                                                                                                                                     |
-|----------------+------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|----------------|------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | rates          | <sub>[`.create('/rates', input, config, callback)`](https://github.com/postmen/postmen-sdk-js/master/examples/rates_create.js#L78)</sub>             | <sub>[`.get('/rates', input, config, callback)`](https://github.com/postmen/postmen-sdk-js/master/examples/rates_retrieve.js#L9)</sub>                 | <sub>[`.get('rates/rate-id-here', input, config, callback)`](https://github.com/postmen/postmen-sdk-js/master/examples/rates_retrieve.js#L18)</sub>                           |
 | labels         | <sub>[`.create('/labels', input, config, callback)`](https://github.com/postmen/postmen-sdk-js/master/examples/labels_create.js#L98)</sub>           | <sub>[`.get('/labels', input, config, callback))`](https://github.com/postmen/postmen-sdk-js/master/examples/labels_retrieve.js#L9)</sub>              | <sub>[`.get('/labels/label-id-here', input, config, callback))`](https://github.com/postmen/postmen-sdk-js/master/examples/labels_retrieve.js#L18)</sub>                      |
 | manifest       | <sub>[`.create('/manifest', input, config, callback)`](https://github.com/postmen/postmen-sdk-js/master/examples/manifests_create.js)</sub>          | <sub>[`.get('/manifest', input, config, callback)`](https://github.com/postmen/postmen-sdk-js/master/examples/manifests_retrieve.js#L9)</sub>          | <sub>[`.get('/manifest/manifest-id-here', input, config, callback)`](https://github.com/postmen/postmen-sdk-js/master/examples/manifests_retrieve.js#L19)</sub>               |
