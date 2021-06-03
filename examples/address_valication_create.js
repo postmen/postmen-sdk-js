@@ -1,12 +1,11 @@
 "use strict";
 
 const Postmen = require("./../index");
-const { region } = require("./credentials");
 const Credentials = require("./credentials");
 
-let postmen = Postmen(Credentials.api_key, Credentials.region);
+const postmen = Postmen(Credentials.api_key, Credentials.region);
 
-let payload = {
+const payload = {
 	address: {
 		contact_name: "testing",
 		street1: "4901 N New Hope Rd Apt C1",
@@ -20,11 +19,11 @@ let payload = {
 	},
 };
 
-let input = {
+const input = {
 	body: payload,
 };
 
-let config = {};
+const config = {};
 
 postmen
 	.create("/address-validations", input, config)

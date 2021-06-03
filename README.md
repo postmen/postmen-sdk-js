@@ -134,13 +134,14 @@ Creates postmen api object
 - [POST /labels](https://docs.postmen.com/#labels-create-a-label)
 - [POST /manifests](https://docs.postmen.com/#manifests-create-a-manifest)
 - [POST /cancel-labels](https://docs.postmen.com/#cancel-labels-cancel-a-label)
+- [POST /address-validations](https://docs.postmen.com/#address-validations)
 
 **Examples:**
-- [rates_create.js](https://github.com/postmen/postmen-sdk-js/master/examples/rates_create.js)
-- [labels_create.js](https://github.com/postmen/postmen-sdk-js/master/examples/labels_create.js)
-- [manifests_create.js](https://github.com/postmen/postmen-sdk-js/master/examples/manifests_create.js)
-- [cancel_labels_create.js](https://github.com/postmen/postmen-sdk-js/master/examples/cancel_labels_create.js)
-- [address_validation_create.js](https://github.com/postmen/postmen-sdk-js/master/examples/address_validation_create.js)
+- [rates_create.js](https://github.com/postmen/postmen-sdk-js/blob/master/examples/rates_create.js)
+- [labels_create.js](https://github.com/postmen/postmen-sdk-js/blob/master/examples/labels_create.js)
+- [manifests_create.js](https://github.com/postmen/postmen-sdk-js/blob/master/examples/manifests_create.js)
+- [cancel_labels_create.js](https://github.com/postmen/postmen-sdk-js/blob/master/examples/cancel_labels_create.js)
+- [address_validation_create.js](https://github.com/postmen/postmen-sdk-js/blob/master/examples/address_validation_create.js)
 
 #### get(path, input, config,callback)
 Get Postmen API  objects (list or a single objects).
@@ -177,10 +178,10 @@ postmen.call('GET', '/path', input, config, callback);
 
 
 **Examples:**
-- [rates_retrieve.js](https://github.com/postmen/postmen-sdk-js/master/examples/rates_retrieve.js)
-- [labels_retrieve.js](https://github.com/postmen/postmen-sdk-js/master/examples/labels_retrieve.js)
-- [manifests_retrieve.js](https://github.com/postmen/postmen-sdk-js/master/examples/manifests_retrieve.js)
-- [cancel_labels_retrieve.js](https://github.com/postmen/postmen-sdk-js/master/examples/cancel_labels_retrieve.js)
+- [rates_retrieve.js](https://github.com/postmen/postmen-sdk-js/blob/master/examples/rates_retrieve.js)
+- [labels_retrieve.js](https://github.com/postmen/postmen-sdk-js/blob/master/examples/labels_retrieve.js)
+- [manifests_retrieve.js](https://github.com/postmen/postmen-sdk-js/blob/master/examples/manifests_retrieve.js)
+- [cancel_labels_retrieve.js](https://github.com/postmen/postmen-sdk-js/blob/master/examples/cancel_labels_retrieve.js)
 #### Proxy Method (GET, POST, PUT, DELETE)
 
 There are also interface `GET`, `POST`, `PUT`, `DELETE` which are proxy to `Postmen.call(...)`
@@ -212,8 +213,8 @@ postmen.get('labels', input, config).then();
 
 ## Promise:
 Only [create(path, config, callback)](#createpath-config-callback) and [get(path, config, callback)](#getpath-configcallback) function support promise.
-- [create example](https://github.com/postmen/postmen-sdk-js/master/examples/labels_create.js)
-- [get example](https://github.com/postmen/postmen-sdk-js/master/examples/labels_retrieve.js).
+- [create example](https://github.com/postmen/postmen-sdk-js/blob/master/examples/labels_create.js)
+- [get example](https://github.com/postmen/postmen-sdk-js/blob/master/examples/labels_retrieve.js).
 
 ## Rate Limiter:
 
@@ -257,24 +258,24 @@ All examples avalible listed in the table below.
 
 | File                                                                                                             | Description                        |
 |------------------------------------------------------------------------------------------------------------------|------------------------------------|
-| [rates\_create.js](https://github.com/postmen/postmen-sdk-js/master/examples/rates_create.js)                    | `rates` object creation            |
-| [rates\_retrieve.js](https://github.com/postmen/postmen-sdk-js/master/examples/rates_retrieve.js)                | `rates` object(s) retrieve         |
-| [labels_create.js](https://github.com/postmen/postmen-sdk-js/master/examples/labels_create.js)                   | `labels` object creation           |
-| [labels_retrieve.js](https://github.com/postmen/postmen-sdk-js/master/examples/labels_retrieve.js)               | `labels` object(s) retrieve        |
-| [manifests_create.js](https://github.com/postmen/postmen-sdk-js/master/examples/manifests_create.js)             | `manifests` object creation        |
-| [manifests_retrieve.js](https://github.com/postmen/postmen-sdk-js/master/examples/manifests_retrieve.js)         | `manifests` object(s) retrieve     |
-| [cancel_labels_create.js](https://github.com/postmen/postmen-sdk-js/master/examples/cancel_labels_create.js)     | `cancel-labels` object creation    |
-| [cancel_labels_retrieve.js](https://github.com/postmen/postmen-sdk-js/master/examples/cancel_labels_retrieve.js) | `cancel-labels` object(s) retrieve |
-| [address_validation_create.js](https://github.com/postmen/postmen-sdk-js/master/examples/address_validation_create.js) | `address_validation` object(s) creation |
-| [proxy.js](https://github.com/postmen/postmen-sdk-js/master/examples/proxy.js)                                   | Proxy usage                        |
-| [error.js](https://github.com/postmen/postmen-sdk-js/master/examples/error.js)                                   | Avalible ways to catch/get errors  |
-| [response.js](https://github.com/postmen/postmen-sdk-js/master/examples/response.js)                             | Avalible output types              |
+| [rates\_create.js](https://github.com/postmen/postmen-sdk-js/blob/master/examples/rates_create.js)                    | `rates` object creation            |
+| [rates\_retrieve.js](https://github.com/postmen/postmen-sdk-js/blob/master/examples/rates_retrieve.js)                | `rates` object(s) retrieve         |
+| [labels_create.js](https://github.com/postmen/postmen-sdk-js/blob/master/examples/labels_create.js)                   | `labels` object creation           |
+| [labels_retrieve.js](https://github.com/postmen/postmen-sdk-js/blob/master/examples/labels_retrieve.js)               | `labels` object(s) retrieve        |
+| [manifests_create.js](https://github.com/postmen/postmen-sdk-js/blob/master/examples/manifests_create.js)             | `manifests` object creation        |
+| [manifests_retrieve.js](https://github.com/postmen/postmen-sdk-js/blob/master/examples/manifests_retrieve.js)         | `manifests` object(s) retrieve     |
+| [cancel_labels_create.js](https://github.com/postmen/postmen-sdk-js/blob/master/examples/cancel_labels_create.js)     | `cancel-labels` object creation    |
+| [cancel_labels_retrieve.js](https://github.com/postmen/postmen-sdk-js/blob/master/examples/cancel_labels_retrieve.js) | `cancel-labels` object(s) retrieve |
+| [address_validation_create.js](https://github.com/postmen/postmen-sdk-js/blob/master/examples/address_validation_create.js) | `address_validation` object(s) creation |
+| [proxy.js](https://github.com/postmen/postmen-sdk-js/blob/master/examples/proxy.js)                                   | Proxy usage                        |
+| [error.js](https://github.com/postmen/postmen-sdk-js/blob/master/examples/error.js)                                   | Avalible ways to catch/get errors  |
+| [response.js](https://github.com/postmen/postmen-sdk-js/blob/master/examples/response.js)                             | Avalible output types              |
 
 #### How to run
 
 Download the source code, go to `examples` directory.
 
-Put your API key and region to [credentials.js](https://github.com/postmen/postmen-sdk-js/master/examples/credentials.js)
+Put your API key and region to [credentials.js](https://github.com/postmen/postmen-sdk-js/blob/master/examples/credentials.js)
 
 Check the file you want to run before run. Some require you to set additional variables.
 
@@ -284,11 +285,11 @@ For each API method SDK provides Node.js wrapper. Use the table below to find SD
 
 | Model \ Action | create                                                                                                                                               | get all                                                                                                                                                | get by id                                                                                                                                                                     |
 |----------------|------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| rates          | <sub>[`.create('/rates', input, config, callback)`](https://github.com/postmen/postmen-sdk-js/master/examples/rates_create.js#L78)</sub>             | <sub>[`.get('/rates', input, config, callback)`](https://github.com/postmen/postmen-sdk-js/master/examples/rates_retrieve.js#L9)</sub>                 | <sub>[`.get('rates/rate-id-here', input, config, callback)`](https://github.com/postmen/postmen-sdk-js/master/examples/rates_retrieve.js#L18)</sub>                           |
-| labels         | <sub>[`.create('/labels', input, config, callback)`](https://github.com/postmen/postmen-sdk-js/master/examples/labels_create.js#L98)</sub>           | <sub>[`.get('/labels', input, config, callback))`](https://github.com/postmen/postmen-sdk-js/master/examples/labels_retrieve.js#L9)</sub>              | <sub>[`.get('/labels/label-id-here', input, config, callback))`](https://github.com/postmen/postmen-sdk-js/master/examples/labels_retrieve.js#L18)</sub>                      |
-| manifest       | <sub>[`.create('/manifest', input, config, callback)`](https://github.com/postmen/postmen-sdk-js/master/examples/manifests_create.js)</sub>          | <sub>[`.get('/manifest', input, config, callback)`](https://github.com/postmen/postmen-sdk-js/master/examples/manifests_retrieve.js#L9)</sub>          | <sub>[`.get('/manifest/manifest-id-here', input, config, callback)`](https://github.com/postmen/postmen-sdk-js/master/examples/manifests_retrieve.js#L19)</sub>               |
-| cancel-labels  | <sub>[`.create('/cancel-labels', input, config, callback)`](https://github.com/postmen/postmen-sdk-js/master/examples/cancel_labels_create.js)</sub> | <sub>[`.get('/cancel-labels', input, config, callback)`](https://github.com/postmen/postmen-sdk-js/master/examples/cancel_labels_retrieve.js#L9)</sub> | <sub>[`.get('/cancel-labels/cancel-labels-id-here', input, config, callback)`](https://github.com/postmen/postmen-sdk-js/master/examples/cancel_labels_retrieve.js#L18)</sub> |
-| address-validations| <sub>[`.create('/address-validations', input, config, callback)`](https://github.com/postmen/postmen-sdk-js/master/examples/address-validations.js)</sub> | |
+| rates          | <sub>[`.create('/rates', input, config, callback)`](https://github.com/postmen/postmen-sdk-js/blob/master/examples/rates_create.js#L78)</sub>             | <sub>[`.get('/rates', input, config, callback)`](https://github.com/postmen/postmen-sdk-js/blob/master/examples/rates_retrieve.js#L9)</sub>                 | <sub>[`.get('rates/rate-id-here', input, config, callback)`](https://github.com/postmen/postmen-sdk-js/blob/master/examples/rates_retrieve.js#L18)</sub>                           |
+| labels         | <sub>[`.create('/labels', input, config, callback)`](https://github.com/postmen/postmen-sdk-js/blob/master/examples/labels_create.js#L98)</sub>           | <sub>[`.get('/labels', input, config, callback))`](https://github.com/postmen/postmen-sdk-js/blob/master/examples/labels_retrieve.js#L9)</sub>              | <sub>[`.get('/labels/label-id-here', input, config, callback))`](https://github.com/postmen/postmen-sdk-js/blob/master/examples/labels_retrieve.js#L18)</sub>                      |
+| manifest       | <sub>[`.create('/manifest', input, config, callback)`](https://github.com/postmen/postmen-sdk-js/blob/master/examples/manifests_create.js)</sub>          | <sub>[`.get('/manifest', input, config, callback)`](https://github.com/postmen/postmen-sdk-js/blob/master/examples/manifests_retrieve.js#L9)</sub>          | <sub>[`.get('/manifest/manifest-id-here', input, config, callback)`](https://github.com/postmen/postmen-sdk-js/blob/master/examples/manifests_retrieve.js#L19)</sub>               |
+| cancel-labels  | <sub>[`.create('/cancel-labels', input, config, callback)`](https://github.com/postmen/postmen-sdk-js/blob/master/examples/cancel_labels_create.js)</sub> | <sub>[`.get('/cancel-labels', input, config, callback)`](https://github.com/postmen/postmen-sdk-js/blob/master/examples/cancel_labels_retrieve.js#L9)</sub> | <sub>[`.get('/cancel-labels/cancel-labels-id-here', input, config, callback)`](https://github.com/postmen/postmen-sdk-js/blob/master/examples/cancel_labels_retrieve.js#L18)</sub> |
+| address-validations| <sub>[`.create('/address-validations', input, config, callback)`](https://github.com/postmen/postmen-sdk-js/blob/master/examples/address-validations.js)</sub> | |
 ## Testing
 ```
 mocha --recursive
