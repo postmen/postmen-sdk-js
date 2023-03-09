@@ -79,7 +79,7 @@ let config = {};
 
 // create rates with input and config
 postmen.create('/rates', input, config).then(function (result) {
-	console.log('ERROR:', result);
+	console.log('RESULT:', result);
 }).catch(function (err) {
-	console.log('RESULT:', err);
+	console.log('ERROR:', err);
 });

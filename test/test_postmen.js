@@ -8,7 +8,7 @@ const Postmen = require('./../index');
 
 let api_key = 'FAKE_API_KEY';
 let region = 'FAKE_REGION';
-let default_endpoint = 'https://FAKE_REGION-api.postmen.com/v3';
+let default_endpoint = 'https://FAKE_REGION-api.aftership.com/postmen/v3';
 let default_proxy = null;
 let default_retry = true;
 
@@ -29,7 +29,7 @@ describe('Test constructor', function () {
 		});
 
 		it('should construct with api_key and region correctly', function () {
-			let endpoint = 'https://awesome-api.postmen.com/v3';
+			let endpoint = 'https://awesome-api.aftership.com/postmen/v3';
 			let postmen = Postmen(api_key, 'awesome');
 			expect(postmen.api_key).to.equal(api_key);
 			expect(postmen.endpoint).to.equal(endpoint);
@@ -38,7 +38,7 @@ describe('Test constructor', function () {
 		});
 
 		it('should construct with api_key and endpoint correctly', function () {
-			let endpoint = 'https://awesome-api.postmen.com/v3';
+			let endpoint = 'https://awesome-api.aftership.com/postmen/v3';
 			let postmen = Postmen(api_key, region, {
 				endpoint: endpoint
 			});

@@ -12,7 +12,7 @@
 ![codecov.io](https://codecov.io/gh/postmen/postmen-sdk-js/branch/master/graphs/commits.svg)
 
 ## Introduction
-Node.js SDK for [Postmen API](https://docs.postmen.com/).
+Node.js SDK for [Postmen API](https://www.aftership.com/docs/shipping/quickstart/api-quick-start).
 For problems and suggestions please open [GitHub issue](https://github.com/postmen/postmen-sdk-js/issues)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
@@ -50,7 +50,7 @@ npm install postmen
 
 ## Quick Start
 
-In order to get API key and choose a region refer to the [documentation](https://docs.postmen.com/overview.html).
+In order to get API key refer to the [documentation](https://www.aftership.com/docs/shipping/quickstart/api-quick-start#2-get-the-api-key).
 
 ```javascript
 'use strict';
