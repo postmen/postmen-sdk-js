@@ -289,7 +289,7 @@ describe('Test Payload constructor', function () {
 				let result = Payload(postmen, 'GET', '');
 				let headers = {
 					'Connection': 'keep-alive',
-					'postmen-api-key': api_key,
+					'as-api-key': api_key,
 					'Content-Type': 'application/json',
 					'x-postmen-agent': '1.0.0'
 				};
@@ -407,7 +407,7 @@ describe('Test Payload constructor', function () {
 				let result = Payload(postmen, 'GET', '', {
 					api_key: other_api_key
 				});
-				expect(result.request_object.headers['postmen-api-key']).to.equal(other_api_key);
+				expect(result.request_object.headers['as-api-key']).to.equal(other_api_key);
 			});
 		});
 
@@ -437,7 +437,7 @@ describe('Test Payload constructor', function () {
 
 			it('should set correct api_key', function (done) {
 				postmen.useApiKey('OTHER_FAKE_API_KEY').get('labels', function (err, result) {
-					expect(postmen.request.args[0][0].headers['postmen-api-key']).equal('OTHER_FAKE_API_KEY');
+					expect(postmen.request.args[0][0].headers['as-api-key']).equal('OTHER_FAKE_API_KEY');
 					done();
 				});
 			});

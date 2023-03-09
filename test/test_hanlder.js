@@ -12,7 +12,7 @@ const Handler = require('./../lib/handler');
 
 const api_key = 'FAKE_API_KEY';
 const region = 'FAKE_REGION';
-const default_endpoint = 'https://FAKE_REGION-api.postmen.com/v3';
+const default_endpoint = 'https://FAKE_REGION-api.aftership.com/postmen/v3';
 
 describe('Test postmen.call()', function () {
 	this.timeout(600000);
@@ -205,7 +205,7 @@ describe('Test postmen.call()', function () {
 				let request_object = {
 					headers: {
 						'Connection': 'keep-alive',
-						'postmen-api-key': api_key,
+						'as-api-key': api_key,
 						'Content-Type': 'application/json',
 						'x-postmen-agent': '1.0.0'
 					},
@@ -224,7 +224,7 @@ describe('Test postmen.call()', function () {
 				let request_object = {
 					headers: {
 						'Connection': 'keep-alive',
-						'postmen-api-key': api_key,
+						'as-api-key': api_key,
 						'Content-Type': 'application/json',
 						'x-postmen-agent': '1.0.0'
 					},
@@ -245,7 +245,7 @@ describe('Test postmen.call()', function () {
 				let request_object = {
 					headers: {
 						'Connection': 'keep-alive',
-						'postmen-api-key': api_key,
+						'as-api-key': api_key,
 						'Content-Type': 'application/json',
 						'x-postmen-agent': '1.0.0'
 					},
@@ -270,7 +270,7 @@ describe('Test postmen.call()', function () {
 				let request_object = {
 					headers: {
 						'Connection': 'keep-alive',
-						'postmen-api-key': api_key,
+						'as-api-key': api_key,
 						'Content-Type': 'application/json',
 						'x-postmen-agent': '1.0.0',
 						'platform': 'csv'
@@ -293,7 +293,7 @@ describe('Test postmen.call()', function () {
 				let request_object = {
 					headers: {
 						'Connection': 'keep-alive',
-						'postmen-api-key': api_key,
+						'as-api-key': api_key,
 						'Content-Type': 'application/json',
 						'x-postmen-agent': '1.0.0'
 					},
@@ -318,7 +318,7 @@ describe('Test postmen.call()', function () {
 				let request_object = {
 					headers: {
 						'Connection': 'keep-alive',
-						'postmen-api-key': api_key,
+						'as-api-key': api_key,
 						'Content-Type': 'application/json',
 						'x-postmen-agent': '1.0.0'
 					},
@@ -342,7 +342,7 @@ describe('Test postmen.call()', function () {
 				let request_object = {
 					headers: {
 						'Connection': 'keep-alive',
-						'postmen-api-key': api_key,
+						'as-api-key': api_key,
 						'Content-Type': 'application/json',
 						'x-postmen-agent': '1.0.0'
 					},
@@ -363,7 +363,7 @@ describe('Test postmen.call()', function () {
 				let request_object = {
 					headers: {
 						'Connection': 'keep-alive',
-						'postmen-api-key': api_key,
+						'as-api-key': api_key,
 						'Content-Type': 'application/json',
 						'x-postmen-agent': '1.0.0'
 					},
@@ -413,7 +413,7 @@ describe('Test postmen.call()', function () {
 				let request_object = {
 					headers: {
 						'Connection': 'keep-alive',
-						'postmen-api-key': api_key,
+						'as-api-key': api_key,
 						'Content-Type': 'application/json',
 						'x-postmen-agent': '1.0.0'
 					},
@@ -432,7 +432,7 @@ describe('Test postmen.call()', function () {
 				let request_object = {
 					headers: {
 						'Connection': 'keep-alive',
-						'postmen-api-key': api_key,
+						'as-api-key': api_key,
 						'Content-Type': 'application/json',
 						'x-postmen-agent': '1.0.0'
 					},
@@ -451,7 +451,7 @@ describe('Test postmen.call()', function () {
 				let request_object = {
 					headers: {
 						'Connection': 'keep-alive',
-						'postmen-api-key': api_key,
+						'as-api-key': api_key,
 						'Content-Type': 'application/json',
 						'x-postmen-agent': '1.0.0'
 					},
@@ -470,7 +470,7 @@ describe('Test postmen.call()', function () {
 				let request_object = {
 					headers: {
 						'Connection': 'keep-alive',
-						'postmen-api-key': api_key,
+						'as-api-key': api_key,
 						'Content-Type': 'application/json',
 						'x-postmen-agent': '1.0.0'
 					},
@@ -714,7 +714,7 @@ describe('Test postmen.call()', function () {
 				let payload = {
 					request_object: {
 						headers: {
-							'postmen-api-key': 'FAKE_API_KEY'
+							'as-api-key': 'FAKE_API_KEY'
 						}
 					}
 				};
@@ -735,12 +735,12 @@ describe('Test postmen.call()', function () {
 			let payload = {
 				request_object: {
 					headers: {
-						'postmen-api-key': 'FAKE_API_KEY',
+						'as-api-key': 'FAKE_API_KEY',
 						'Content-Type': 'application/json',
 						Connection: 'keep-alive',
 						'x-postmen-agent': '1.0.0'
 					},
-					url: 'https://FAKE_REGION-api.postmen.com/v3/labels',
+					url: 'https://FAKE_REGION-api.aftership.com/postmen/v3/labels',
 					method: 'GET',
 					json: true
 				},
@@ -813,12 +813,12 @@ describe('Test postmen.call()', function () {
 				payload = {
 					request_object: {
 						headers: {
-							'postmen-api-key': 'FAKE_API_KEY',
+							'as-api-key': 'FAKE_API_KEY',
 							'Content-Type': 'application/json',
 							Connection: 'keep-alive',
 							'x-postmen-agent': '1.0.0'
 						},
-						url: 'https://FAKE_REGION-api.postmen.com/v3/labels',
+						url: 'https://FAKE_REGION-api.aftership.com/postmen/v3/labels',
 						method: 'GET',
 						json: true
 					},
@@ -857,12 +857,12 @@ describe('Test postmen.call()', function () {
 			let payload = {
 				request_object: {
 					headers: {
-						'postmen-api-key': 'FAKE_API_KEY',
+						'as-api-key': 'FAKE_API_KEY',
 						'Content-Type': 'application/json',
 						Connection: 'keep-alive',
 						'x-postmen-agent': '1.0.0'
 					},
-					url: 'https://FAKE_REGION-api.postmen.com/v3/labels',
+					url: 'https://FAKE_REGION-api.aftership.com/postmen/v3/labels',
 					method: 'GET',
 					json: true
 				},
